@@ -17,7 +17,7 @@
   "license": "MIT",
   "main": "lib/index.js",
   "scripts": {
-    "test": "jest test",
+    "test": "test/cli-test.sh && jest test",
     "lint": "jshint lib/**.js test/**.js"
   },
   "preferGlobal": true,

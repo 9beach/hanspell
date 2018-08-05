@@ -40,7 +40,7 @@ $ cat your-text | hanspell-cli
 쇼코는 해변에 서 있으면 이 세상의 변두리에 선 느낌이 든다고 말했었다.
 ```
 변경 로그는 생략한 채 교정된 문장만 보고 싶다면 아래와 같이 명령할 수 있습니다.
-```bash
+```
 $ cat your-text | hanspell-cli 2> /dev/null
 나는 차가운 모래 속에 두 손을 넣고 검게 빛나는 바다를 바라본다.
 우주의 가장자리 같다.
@@ -48,7 +48,7 @@ $ cat your-text | hanspell-cli 2> /dev/null
 ```
 클립보드에 복사된 문장의 맞춤법을 검사하고 싶다면, 매킨토시 사용자는 `pbpaste`
 명령을, X 윈도 시스템 사용자는 `xclip` 명령을 이용할 수 있습니다.
-```sh
+```
 $ pbpaste | hanspell-cli
 ```
 
@@ -66,11 +66,12 @@ const sentence =
 
 const endDAUM = function () { console.log("DAUM END"); };
 const endPNU = function () { console.log("Pusan Univ. END"); };
+const error = function (err) { console.error("HTTP status code: " + err); };
 
-hanspell.checkSpellWithDAUM(sentence, 6000, console.log, endDAUM);
-hanspell.checkSpellWithPNU(sentence, 6000, console.log, endPNU);
+hanspell.checkSpellWithDAUM(sentence, 6000, console.log, endDAUM, error);
+hanspell.checkSpellWithPNU(sentence, 6000, console.log, endPNU, error);
 ```
-아래의 실행 결과가 예상됩니다.
+아래의 결과가 예상됩니다.
 ```sh
 $ node hanspell-test.js
 DAUM
@@ -93,8 +94,8 @@ Pusan Univ.
   { errorInput: '이세상의', errorOutput: '이 세상의' } ]
 Pusan Univ. END
 ```
-위의 예시에서 `sentence`가 아주 길었다면 `console.log`는 여러 번 호출되었겠지만, 
-`endDAUM`과 `endPNU`는 항상 한 번만 호출됩니다.
+위의 예시에서 `sentence`가 300 단어나 1000 자가 넘었다면 `console.log`는 
+여러 번 호출되었겠지만, `endDAUM`과 `endPNU`는 항상 한 번만 호출됩니다.
 
 ## 남은 일
 * 윈도우 사용자를 위해 인코딩 설정 추가.

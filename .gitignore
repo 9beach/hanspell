@@ -3,9 +3,7 @@
 .jekyll-metadata
 .sass-cache
 *.gem
-*.sublime-project
-*.sublime-workspace
-codekit-config.json
+.*.swp
 Gemfile.lock
 node_modules
 npm-debug.log*
