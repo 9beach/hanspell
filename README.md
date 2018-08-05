@@ -76,7 +76,6 @@ hanspell.checkSpellWithPNU(sentence, 6000, console.log, endPNU, error);
 아래의 결과가 예상됩니다.
 ```sh
 $ node hanspell-test.js
-DAUM
 [ { errorType: 'daum space',
     errorInput: '모래속에',
     errorOutput: '모래 속에',
@@ -90,7 +89,6 @@ DAUM
     errorOutput: '이 세상의',
     errorContext: '서 있으면 이세상의 변두리에 선' } ]
 DAUM END
-Pusan Univ.
 [ { errorInput: '모래속에', errorOutput: '모래 속에' },
   { errorInput: '두손을', errorOutput: '두 손을' },
   { errorInput: '이세상의', errorOutput: '이 세상의' } ]
