@@ -93,5 +93,10 @@ Pusan Univ.
   { errorInput: '이세상의', errorOutput: '이 세상의' } ]
 Pusan Univ. END
 ```
-위의 예시에서 `sentence`가 아주 길었다면 `console.log`는 여러 번 호출되겠지만, 
+위의 예시에서 `sentence`가 아주 길었다면 `console.log`는 여러 번 호출되었겠지만, 
 `endDAUM`과 `endPNU`는 항상 한 번만 호출됩니다.
+
+## 남은 일
+* 윈도우 사용자를 위해 인코딩 설정 추가.
+* 라이브러리 수행 결과 `JSON`에 설명과 예시 항목 추가.
+* 일렉트론을 이용해서 UI 버전 개발.
