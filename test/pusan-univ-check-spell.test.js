@@ -1,4 +1,4 @@
-const checkSpell = require('../lib/pusan-univ-check-spell')
+const checkSpell = require('../lib/pusan-univ-check-spell');
 const sentence = 
 `여름 저녁이 푸르를 때 난 가리라
 보리 무성한 사이 가느다란 풀 짓밟힌 샛길 속으로.
@@ -8,7 +8,7 @@ const sentence =
 난 말하지 않으련다, 아무것도 생각지 않으련다.
 그러나 한없는 사랑이 내 혼속에 살아오리니
 그럼 유랑민처럼 멀리 아주 멀리 가리라,
-여인과 같이 있는 것처럼 행복되게, 이리저리 자연을`
+여인과 같이 있는 것처럼 행복되게, 이리저리 자연을`;
 
 test('pusan univ check spell of sentence', done => {
   const timeout = 4000;

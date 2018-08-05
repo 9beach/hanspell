@@ -3,3 +3,5 @@ node_js:
   - 10
   - 8
   - 7
+before_script:
+  - npm run lint

@@ -1,4 +1,5 @@
 {
+  "-W116": false,
   "esversion": 6,
   "curly": true,
   "eqeqeq": true,
@@ -13,6 +14,7 @@
   "eqnull": true,
   "node": true,
   "globals": {
-    "Promise": true
+    "test": true,
+    "expect": true
   }
 }

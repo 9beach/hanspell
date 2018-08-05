@@ -1,6 +1,6 @@
-const splitByLength = require('../lib/split-string').byLength
-const splitByWordCount = require('../lib/split-string').byWordCount
-const indexOfAny = require('../lib/split-string').indexOfAny
+const splitByLength = require('../lib/split-string').byLength;
+const splitByWordCount = require('../lib/split-string').byWordCount;
+const indexOfAny = require('../lib/split-string').indexOfAny;
 
 test('index of any', () => {
   expect(indexOfAny("abc\t \n", "\t \n")).toBe(3);
