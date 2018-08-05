@@ -64,24 +64,11 @@ const sentence =
 우주의 가장자리 같다.
 쇼코는 해변에 서 있으면 이세상의 변두리에 선 느낌이 든다고 말했었다.`;
 
-const logDAUM = function (data) {
-  console.log(data);
-};
+const endDAUM = function () { console.log("DAUM END"); };
+const endPNU = function () { console.log("Pusan Univ. END"); };
 
-const endDAUM = function () {
-  console.log("DAUM END");
-}
-
-const logPNU = function (data) {
-  console.log(data);
-};
-
-const endPNU = function () {
-  console.log("Pusan Univ. END");
-}
-
-hanspell.checkSpellWithDAUM(sentence, 6000, logDAUM, endDAUM);
-hanspell.checkSpellWithPNU(sentence, 6000, logPNU, endPNU);
+hanspell.checkSpellWithDAUM(sentence, 6000, console.log, endDAUM);
+hanspell.checkSpellWithPNU(sentence, 6000, console.log, endPNU);
 ```
 아래의 실행 결과가 예상됩니다.
 ```sh
@@ -106,5 +93,5 @@ Pusan Univ.
   { errorInput: '이세상의', errorOutput: '이 세상의' } ]
 Pusan Univ. END
 ```
-문장이 길면 `logDAUM`와 `logPNU`는 여러 번 호출되지만, `logPNU`와 `endPNU`는
-어떤 경우에도 한 번만 호출됩니다.
+위의 예시에서 `sentence`가 아주 길었다면 `console.log`는 여러 번 호출되겠지만, 
+`endDAUM`과 `endPNU`는 항상 한 번만 호출됩니다.
