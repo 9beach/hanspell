@@ -1,0 +1,47 @@
+{
+  "name": "hanspell",
+  "version": "0.1.0",
+  "description": "다음(주), 부산대학교의 온라인 서비스를 이용한 한글 맞춤법 검사기.",
+  "homepage": "https://github.com/9beach/hanspell",
+  "author": {
+    "name": "9beach",
+    "email": "9beach@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/9beach/hanspell.git"
+  },
+  "bugs": {
+    "url": "https://github.com/9beach/hanspell/issues"
+  },
+  "license": "MIT",
+  "main": "lib/index.js",
+  "scripts": {
+    "test": "jest test",
+    "lint": "jshint lib/**.js test/**.js"
+  },
+  "preferGlobal": true,
+  "bin": {
+    "hanspell-cli": "lib/cli.js"
+  },
+  "keywords": [
+    "한글",
+    "맞춤법",
+    "Korean",
+    "Spell"
+  ],
+  "jest": {
+    "testEnvironment": "node",
+    "verbose": true
+  },
+  "dependencies": {
+    "html-entities": "^1.2.1",
+    "jshint": "^2.9.6",
+    "request": "^2.87.0",
+    "unescape": "^1.0.1",
+    "user": "0.0.0"
+  },
+  "devDependencies": {
+    "jest": "^23.4.2"
+  }
+}
