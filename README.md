@@ -1,5 +1,6 @@
 # hanspell
-`hanspell`은 다음(주), 부산대학교의 웹 서비스를 이용한 한글 맞춤법 검사기입니다.
+`hanspell`은 (주)다음과 부산대학교 인공지능연구실/(주)나라인포테크의 웹 
+서비스를 이용한 한글 맞춤법 검사기입니다.
 
 [![Build Status](https://travis-ci.org/9beach/hanspell.svg?branch=master)](https://travis-ci.org/9beach/hanspell) [![npm version](https://badge.fury.io/js/hanspell.svg)](https://badge.fury.io/js/hanspell)
 
