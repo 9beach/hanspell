@@ -69,7 +69,7 @@ $ cat your-text | hanspell-cli 2> /dev/null
 ```
 cat your-text | hanspell-cli 2>&1 > /dev/null | grep '^-- 교정 제안'
 ```
-영어 단어에 대한 제안을 배제하려면 다음과 같이 명령합니다.
+영어 단어에 대한 교정 제안을 배제하려면 다음과 같이 명령합니다.
 ```
 cat your-bilingual-text | hanspell-cli 2>&1 > /dev/null | grep '^-- 교정 제안.*[가-힣]'
 ```
