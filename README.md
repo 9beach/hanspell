@@ -119,15 +119,15 @@ hanspell.checkSpellWithPNU(sentence, 6000, console.log, end, error);
     alternativeMatches: [ '굵은데' ] } ]
 // check ends
 ```
-두 함수의 호출 결과는 `text`, `match`, `help` 항목을 가집니다.
-`checkSpellWithPNU`의 결과는 `alternativeMatches` 항목을 추가로 가질 수 
-있으며, `checkSpellWithDAUM`의 결과는 반드시 `type`, `context` 항목을 
+두 함수의 호출 결과는 `text`, `match`, `help` 속성을 가집니다.
+`checkSpellWithPNU`의 결과는 `alternativeMatches` 속성을 추가로 가질 수 
+있으며, `checkSpellWithDAUM`의 결과는 반드시 `type`, `context` 속성을 
 추가로 가집니다. 
 
 위의 예시에서 `sentence`가 300 단어 또는 1000자를 넘으면, 인자로 전달된
 `console.log`는 여러 번 호출되지만 `end`는 항상 한 번만 호출됩니다.
 
 ## 남은 일
-- [x] 라이브러리 실행 결과 JSON에 설명과 예시 항목 추가.
+- [x] 라이브러리 호출 결과 JSON에 설명과 예시 속성 추가.
 - [ ] 일렉트론을 이용한 UI 버전 개발.
 - [ ] Atom과 VS Code를 위한 `lint` 인터페이스 플러그인 개발.
