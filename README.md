@@ -69,7 +69,7 @@ $ cat your-text | hanspell-cli 2> /dev/null
 ```
 cat your-text | hanspell-cli 2>&1 > /dev/null | grep '^-- 교정 제안'
 ```
-한국어에 대한 교정 제안만 보려면 다음과 같이 명령합니다.
+한국어 교정 제안만 보려면 다음과 같이 명령합니다.
 ```
 cat your-bilingual-text | hanspell-cli 2>&1 > /dev/null | grep '^-- 교정 제안.*[가-힣]'
 ```
@@ -81,7 +81,7 @@ $ pbpaste | hanspell-cli
 ```
 
 마이크로소프트 윈도우 사용자는 먼저 명령 창에서 코드 페이지를 UTF-8으로 바꿔야 
-합니다
+합니다.
 ```
 C:\>chcp 65001 
 C:\>type your-text.utf-8 | hanspell-cli
