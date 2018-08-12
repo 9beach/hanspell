@@ -5,7 +5,7 @@
 
 ## 설치
 셸에서 `hanspell-cli` 명령어를 사용하려면 다음과 같이 설치합니다. 
-```sh
+```
 $ sudo npm install -g hanspell
 ```
 Node.js 프로젝트에서 `hanspell` 라이브러리를 사용하려면 다음과 같이 
