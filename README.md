@@ -89,7 +89,7 @@ C:\>type your-text.utf-8 | hanspell-cli
 ## 라이브러리 사용법
 `hanspell` 라이브러리는 `checkSpellWithDAUM`과 `checkSpellWithPNU`, 두 개의 
 함수를 제공합니다. 다음은 사용 예시입니다.
-```js
+```javascript
 // hanspell-example.js
 const hanspell = require('hanspell');
 
@@ -101,7 +101,7 @@ hanspell.checkSpellWithDAUM(sentence, 6000, console.log, end, error);
 hanspell.checkSpellWithPNU(sentence, 6000, console.log, end, error);
 ```
 다음의 결과가 예상됩니다.
-```js
+```javascript
 [ { type: 'space',
     text: '굵은게,',
     match: '굵은 게,',
