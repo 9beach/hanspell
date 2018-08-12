@@ -118,7 +118,7 @@ hanspell.checkSpellWithPNU(sentence, 6000, console.log, end, error);
     alternativeMatches: [ '굵은데' ] } ]
 // check ends
 ```
-두 함수의 호출 결과는 반드시 `text`, `match`, `help` 항목을 가집니다.
+두 함수의 호출 결과는 `text`, `match`, `help` 항목을 가집니다.
 `checkSpellWithPNU`의 결과는 `alternativeMatches` 항목을 가질 수 
 있으며, `checkSpellWithDAUM`의 결과는 반드시 `type`, `context` 항목을 
 가집니다. 
