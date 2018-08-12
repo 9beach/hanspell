@@ -36,8 +36,7 @@
   "dependencies": {
     "html-entities": "^1.2.1",
     "request": "^2.87.0",
-    "unescape": "^1.0.1",
-    "user": "0.0.0"
+    "unescape": "^1.0.1"
   },
   "devDependencies": {
     "jshint": "^2.9.6",
