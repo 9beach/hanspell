@@ -67,11 +67,11 @@ $ cat your-text | hanspell-cli 2> /dev/null
 ```
 교정 제안만 보려면 다음과 같이 명령합니다.
 ```
-cat your-text | hanspell-cli 2>&1 > /dev/null | grep '^-- 교정 제안'
+$ cat your-text | hanspell-cli 2>&1 > /dev/null | grep '^-- 교정 제안'
 ```
 한국어 교정 제안만 보려면 다음과 같이 명령합니다.
 ```
-cat your-bilingual-text | hanspell-cli 2>&1 > /dev/null | grep '^-- 교정 제안.*[가-힣]'
+$ cat your-bilingual-text | hanspell-cli 2>&1 > /dev/null | grep '^-- 교정 제안.*[가-힣]'
 ```
 클립보드에 복사된 문장을 입력 없이 바로 교정하려면, 
 매킨토시 사용자는 `pbpaste` 명령을, X 윈도 시스템 사용자는 `xclip -o` 명령을 
