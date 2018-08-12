@@ -1,4 +1,4 @@
-const checkSpell = require('../lib/daum-check-spell');
+const checkSpell = require('../lib/index').checkSpellWithDAUM;
 const sentence = 
 `여름 저녁이 푸르를 때 난 가리라 
 보리 무성한 사이 가느다란 풀 짓밟힌 샛길 속으로. 
@@ -14,16 +14,33 @@ test('daum check spell', done => {
   const timeout = 4000;
   const check = function (data) {
     expect(data.length).toBe(2);
-    expect(data[0].errorInput).toEqual("스쳐지나가게");
-    expect(data[0].errorOutput).toEqual("스쳐 지나가게");
-    expect(data[0].errorContext.indexOf("람이 스쳐지나가게 내")).not.toBe(-1);
-    expect(data[1].errorInput).toEqual("혼속에");
-    expect(data[1].errorOutput).toEqual("혼 속에");
-    expect(data[1].errorContext.indexOf("랑이 내 혼속에 살아")).not.toBe(-1);
+    expect(data[0].text).toEqual("스쳐지나가게");
+    expect(data[0].match).toEqual("스쳐 지나가게");
+    expect(data[0].context.indexOf("람이 스쳐지나가게 내")).not.toBe(-1);
+    expect(data[1].text).toEqual("혼속에");
+    expect(data[1].match).toEqual("혼 속에");
+    expect(data[1].context.indexOf("랑이 내 혼속에 살아")).not.toBe(-1);
   };
   const end = function () {
       done();
   };
 
+  checkSpell(sentence, timeout, check, end);
+});
+
+test('daum check spell with examples', done => {
+  const sentence = '한바퀴 돌껀데 말했더만';
+  const timeout = 4000;
+  const check = function (data) {
+    expect(data[0].help.indexOf('수사 또는 수관형사와')).not.toBe(-1);
+    expect(data[0].help.indexOf('다섯 마리')).not.toBe(-1);
+    expect(data[1].help.indexOf('잘못된 표기로 의존명사')).not.toBe(-1);
+    expect(data[1].help.indexOf('그 일은 내가')).not.toBe(-1);
+    expect(data[2].help.indexOf('잘못된 어미입니다')).not.toBe(-1);
+    expect(data[2].help.indexOf('잤더니만')).not.toBe(-1);
+  };
+  const end = function () {
+    done();
+  };
   checkSpell(sentence, timeout, check, end);
 });

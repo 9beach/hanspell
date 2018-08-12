@@ -1,6 +1,6 @@
 {
   "name": "hanspell",
-  "version": "0.1.4",
+  "version": "0.2.0",
   "description": "다음(주), 부산대학교의 온라인 서비스를 이용한 한글 맞춤법 검사기.",
   "homepage": "https://github.com/9beach/hanspell",
   "author": {
@@ -31,8 +31,7 @@
     "Spell"
   ],
   "jest": {
-    "testEnvironment": "node",
-    "verbose": true
+    "testEnvironment": "node"
   },
   "dependencies": {
     "html-entities": "^1.2.1",

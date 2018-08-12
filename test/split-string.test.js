@@ -42,7 +42,6 @@ test('split string by word count', () => {
   const string = "Newsmen call it the Cuban Missile   Crisis.\n" + 
       "Teachers say it's the end of the   world.";
   const splitted = splitByWordCount(string, 6);
-  console.log(splitted);
   var recovered = '';
   for (var i = 0; i < splitted.length; ++i) {
     recovered += splitted[i];
@@ -58,7 +57,6 @@ test('split string by large word count', () => {
   const string = "Newsmen call it the Cuban Missile Crisis.\n" + 
       "Teachers say it's the end of the world.";
   const splitted = splitByWordCount(string, 1000);
-  console.log(splitted);
   expect(splitted.length).toBe(1);
   expect(splitted[0]).toEqual(string);
 });
