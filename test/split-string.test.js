@@ -1,62 +1,68 @@
+const assert = require('assert');
 const splitByLength = require('../lib/split-string').byLength;
 const splitByWordCount = require('../lib/split-string').byWordCount;
 const indexOfAny = require('../lib/split-string').indexOfAny;
 
-test('index of any', () => {
-  expect(indexOfAny("abc\t \n", "\t \n")).toBe(3);
-  expect(indexOfAny("\nabc\t \n", "\t \n")).toBe(0);
-  expect(indexOfAny("a\tbc\t \n", "\t \n")).toBe(1);
-  expect(indexOfAny(" a\tbc\t \n", "\t \n")).toBe(0);
+describe('indexOfAny', function () {
+  it('should be OK', function () {
+    assert.equal(indexOfAny("abc\t \n", "\t \n"), 3);
+    assert.equal(indexOfAny("\nabc\t \n", "\t \n"), 0);
+    assert.equal(indexOfAny("a\tbc\t \n", "\t \n"), 1);
+    assert.equal(indexOfAny(" a\tbc\t \n", "\t \n"), 0);
+  });
 });
 
-test('split string by length', () => {
-  const string = "Newsmen call it the Cuban Missile Crisis.\n" + 
+describe('splitByLength', function () {
+  it('should split into 9 data', function () {
+    const string = "Newsmen call it the Cuban Missile Crisis.\n" + 
       "Teachers say it's the end of the world.";
-  const splitted = splitByLength(string, " ", 10);
-  var recovered = '';
-  for (var i = 0; i < splitted.length; ++i) {
-    recovered += splitted[i];
-  }
-  expect(recovered).toBe(string);
-  expect(splitted.length).toBe(9);
-  expect(splitted[0]).toBe("Newsmen ");
-  expect(splitted[1]).toBe("call it ");
-  expect(splitted[2]).toBe("the Cuban ");
-  expect(splitted[3]).toBe("Missile ");
-  expect(splitted[4]).toBe("Crisis.\nTeachers ");
-  expect(splitted[5]).toBe("say it's ");
-  expect(splitted[6]).toBe("the end ");
-  expect(splitted[7]).toBe("of the ");
-  expect(splitted[8]).toBe("world.");
-});
+    const splitted = splitByLength(string, " ", 10);
+    var recovered = '';
+    for (var i = 0; i < splitted.length; ++i) {
+      recovered += splitted[i];
+    }
+    assert.equal(recovered, string);
+    assert.equal(splitted.length, 9);
+    assert.equal(splitted[0], "Newsmen ");
+    assert.equal(splitted[1], "call it ");
+    assert.equal(splitted[2], "the Cuban ");
+    assert.equal(splitted[3], "Missile ");
+    assert.equal(splitted[4], "Crisis.\nTeachers ");
+    assert.equal(splitted[5], "say it's ");
+    assert.equal(splitted[6], "the end ");
+    assert.equal(splitted[7], "of the ");
+    assert.equal(splitted[8], "world.");
+  });
 
-test('split string by large length', () => {
-  const string = "Newsmen call it the Cuban Missile Crisis.\n" + 
+  it('should split into 1 data', () => {
+    const string = "Newsmen call it the Cuban Missile Crisis.\n" + 
       "Teachers say it's the end of the world.";
-  const splitted = splitByLength(string, " ", 1000);
-  expect(splitted.length).toBe(1);
-  expect(splitted[0]).toEqual(string);
+    const splitted = splitByLength(string, " ", 1000);
+    assert.equal(splitted.length, 1);
+    assert.equal(splitted[0], string);
+  });
 });
 
-test('split string by word count', () => {
-  const string = "Newsmen call it the Cuban Missile   Crisis.\n" + 
+describe('splitByWordCount', function () {
+  it('should split into 3 data', function () {
+    const string = "Newsmen call it the Cuban Missile   Crisis.\n" + 
       "Teachers say it's the end of the   world.";
-  const splitted = splitByWordCount(string, 6);
-  var recovered = '';
-  for (var i = 0; i < splitted.length; ++i) {
-    recovered += splitted[i];
-  }
-  expect(recovered).toBe(string);
-  expect(splitted[0]).toBe("Newsmen call it the Cuban Missile ");
-  expect(splitted[1]).toBe("  Crisis.\nTeachers say it's the end ");
-  expect(splitted[2]).toBe("of the   world.");
-  expect(splitted.length).toBe(3);
-});
-
-test('split string by large word count', () => {
-  const string = "Newsmen call it the Cuban Missile Crisis.\n" + 
+    const splitted = splitByWordCount(string, 6);
+    var recovered = '';
+    for (var i = 0; i < splitted.length; ++i) {
+      recovered += splitted[i];
+    }
+    assert.equal(recovered, string);
+    assert.equal(splitted[0], "Newsmen call it the Cuban Missile ");
+    assert.equal(splitted[1], "  Crisis.\nTeachers say it's the end ");
+    assert.equal(splitted[2], "of the   world.");
+    assert.equal(splitted.length, 3);
+  });
+  it('should split into 1 data', function () {
+    const string = "Newsmen call it the Cuban Missile Crisis.\n" + 
       "Teachers say it's the end of the world.";
-  const splitted = splitByWordCount(string, 1000);
-  expect(splitted.length).toBe(1);
-  expect(splitted[0]).toEqual(string);
+    const splitted = splitByWordCount(string, 1000);
+    assert.equal(splitted.length, 1);
+    assert.equal(splitted[0], string);
+  });
 });

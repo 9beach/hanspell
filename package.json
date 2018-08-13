@@ -1,6 +1,6 @@
 {
   "name": "hanspell",
-  "version": "0.2.8",
+  "version": "0.3.0",
   "description": "(주)다음과 부산대학교 인공지능연구실/(주)나라인포테크의 온라인 서비스를 이용한 한글 맞춤법 검사기.",
   "homepage": "https://github.com/9beach/hanspell",
   "author": {
@@ -17,7 +17,7 @@
   "license": "MIT",
   "main": "lib/index.js",
   "scripts": {
-    "test": "test/cli-test.sh && jest test",
+    "test": "mocha",
     "lint": "jshint lib/**.js test/**.js"
   },
   "preferGlobal": true,
@@ -30,9 +30,6 @@
     "Korean",
     "Spell"
   ],
-  "jest": {
-    "testEnvironment": "node"
-  },
   "dependencies": {
     "html-entities": "^1.2.1",
     "request": "^2.87.0",
@@ -40,6 +37,6 @@
   },
   "devDependencies": {
     "jshint": "^2.9.6",
-    "jest": "^23.4.2"
+    "mocha": "^5.2.0"
   }
 }

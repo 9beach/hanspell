@@ -14,7 +14,7 @@
   "eqnull": true,
   "node": true,
   "globals": {
-    "test": true,
-    "expect": true
+    "it": true,
+    "describe": true
   }
 }
