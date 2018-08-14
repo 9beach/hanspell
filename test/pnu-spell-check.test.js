@@ -1,7 +1,7 @@
 const assert = require('assert');
-const checkSpell = require('../lib/index').checkSpellWithPNU;
+const spellCheck = require('../lib/index').spellCheckByPNU;
 
-describe('checkSpellWithPNU', function () {
+describe('spellCheckByPNU', function () {
   it('should fetch 4 data', function (done) {
     const sentence = 
 `여름 저녁이 푸르를 때 난 가리라
@@ -25,7 +25,7 @@ describe('checkSpellWithPNU', function () {
       assert.equal(data[3].text, "행복되게");
       assert.equal(data[3].match, "행복하게");
     };
-    checkSpell(sentence, timeout, check, done);
+    spellCheck(sentence, timeout, check, done);
   });
   it('should have alternative matches', function (done) {
     const sentence = '리랜드는 얼굴 골격이 굵은 게, 어머니 쪽을 닮았다.';
@@ -35,6 +35,6 @@ describe('checkSpellWithPNU', function () {
       assert.equal(data[0].alternativeMatches.length, 1);
       assert.equal(data[0].alternativeMatches[0].indexOf('시랜드'), 0);
     };
-    checkSpell(sentence, timeout, check, done);
+    spellCheck(sentence, timeout, check, done);
   });
 });

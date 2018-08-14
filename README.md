@@ -88,7 +88,7 @@ C:\>type your-text.utf-8 | hanspell-cli
 ```
 
 ## 라이브러리 사용법
-`hanspell` 라이브러리는 `checkSpellWithDAUM`과 `checkSpellWithPNU`, 두 개의 
+`hanspell` 라이브러리는 `spellCheckByDAUM`과 `spellCheckByPNU`, 두 개의 
 함수를 제공합니다. 다음은 사용 예시입니다.
 ```javascript
 // hanspell-example.js
@@ -98,8 +98,8 @@ const sentence = '리랜드는 얼굴골격이 굵은 게,';
 const end = function () { console.log("// check ends"); };
 const error = function (err) { console.error("HTTP status code: " + err); };
 
-hanspell.checkSpellWithDAUM(sentence, 6000, console.log, end, error);
-hanspell.checkSpellWithPNU(sentence, 6000, console.log, end, error);
+hanspell.spellCheckByDAUM(sentence, 6000, console.log, end, error);
+hanspell.spellCheckByPNU(sentence, 6000, console.log, end, error);
 ```
 다음의 결과가 예상됩니다.
 ```javascript
@@ -120,8 +120,8 @@ hanspell.checkSpellWithPNU(sentence, 6000, console.log, end, error);
 // check ends
 ```
 두 함수의 호출 결과는 `text`, `match`, `help` 속성을 가집니다.
-`checkSpellWithPNU`의 결과는 `alternativeMatches` 속성을 추가로 가질 수 
-있으며, `checkSpellWithDAUM`의 결과는 반드시 `type`, `context` 속성을 
+`spellCheckByPNU`의 결과는 `alternativeMatches` 속성을 추가로 가질 수 
+있으며, `spellCheckByDAUM`의 결과는 반드시 `type`, `context` 속성을 
 추가로 가집니다. 
 
 위의 예시에서 `sentence`가 300 단어 또는 1000자를 넘으면, 인자로 전달된
