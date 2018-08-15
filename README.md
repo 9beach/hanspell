@@ -33,69 +33,58 @@ $ hanspell-cli -h
 문장을 직접 입력하거나 클립보드에서 복사해서 맞춤법을 교정합니다. 다음은 사용 
 예시입니다.
 
-<pre style="background-color: black;
-  color: white;
-  font-size: medium ; 
-  font-family: Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono, 
-               Bitstream Vera Sans Mono,Courier New, monospace;
-  display: inline;">
--bash-3.2$ groups
-unixuser feegroup figroup fogroup fumgroup
-</pre>
-
-<pre><code>$ hanspell-cli
+<pre style="width: 100%; background-color: #171717 !important;color: #e4e4e4 !important;">
+$ hanspell-cli
 나는 차가운 모래속에 두 손을 넣고 검게 빛나는 바다를 바라본다.
 우주의 가장자리 같다.
 쇼코는 해변에 서 있으면 이세상의 변두리에 선 느낌이 든다고 말했었다.
-<kbd>CTRL + D</kbd>
--- 한스펠 로그 시작
--- 교정 제안: 모래속에 -> 모래 속에
-띄어쓰기 오류입니다. 대치어를 참고하여 고쳐 쓰세요.
--- 교정 제안: 이세상의 -> 이 세상의
+<font color=grey><i>[CTRL + D]</i></font>
+✓ 모래속에 <font color=grey>→</font> 모래 속에<font color=grey>
+띄어쓰기 오류입니다. 대치어를 참고하여 고쳐 쓰세요.</font>
+✓ 이세상의 <font color=grey>→</font> 이 세상의<font color=grey>
 관형사는 뒤에 오는 말과 띄어 쓰는 것이 옳습니다.
 
-(예)
+※
 오빠는 새 신발을 사자마자 헌 신발을 버렸다
 아저씨, 그 사과 얼마예요?
-그녀와 헤어진 지 한 달이 넘었다.
--- 한스펠 로그 끝
-나는 차가운 모래 속에 두 손을 넣고 검게 빛나는 바다를 바라본다.
+그녀와 헤어진 지 한 달이 넘었다.</font>
+나는 차가운 <span style='background-color: #e4e4e4 !important'><font style="color: #171717 !important;">모래 속에</font></span> 두 손을 넣고 검게 빛나는 바다를 바라본다.
 우주의 가장자리 같다.
-쇼코는 해변에 서 있으면 이 세상의 변두리에 선 느낌이 든다고 말했었다.
-</code></pre>
+쇼코는 해변에 서 있으면 <span style='background-color: #e4e4e4 !important'><font style="color: #171717 !important;">이 세상의</font></span> 변두리에 선 느낌이 든다고 말했었다.
+</pre>
 
 파일의 맞춤법을 교정하려면 다음과 같이 명령합니다.
-```
+<pre style="width: 100%; background-color: #171717 !important;color: #e4e4e4 !important;">
 $ cat your-text | hanspell-cli
-```
+</pre>
 로그는 생략한 채 교정된 문장만 보려면 다음과 같이 명령합니다.
-```
+<pre style="width: 100%; background-color: #171717 !important;color: #e4e4e4 !important;">
 $ cat your-text | hanspell-cli 2> /dev/null
-나는 차가운 모래 속에 두 손을 넣고 검게 빛나는 바다를 바라본다.
+나는 차가운 <span style='background-color: #e4e4e4 !important'><font style="color: #171717 !important;">모래 속에</font></span> 두 손을 넣고 검게 빛나는 바다를 바라본다.
 우주의 가장자리 같다.
-쇼코는 해변에 서 있으면 이 세상의 변두리에 선 느낌이 든다고 말했었다.
-```
+쇼코는 해변에 서 있으면 <span style='background-color: #e4e4e4 !important'><font style="color: #171717 !important;">이 세상의</font></span> 변두리에 선 느낌이 든다고 말했었다.
+</pre>
 교정 제안만 보려면 다음과 같이 명령합니다.
-```
-$ cat your-text | hanspell-cli 2>&1 > /dev/null | grep '^-- 교정 제안'
-```
+<pre style="width: 100%; background-color: #171717 !important;color: #e4e4e4 !important;">
+$ cat your-text | hanspell-cli 2>&1 > /dev/null | grep '^✓.*→'
+</pre>
 한국어 교정 제안만 보려면 다음과 같이 명령합니다.
-```
-$ cat your-bilingual-text | hanspell-cli 2>&1 > /dev/null | grep '^-- 교정 제안.*[가-힣]'
-```
+<pre style="width: 100%; background-color: #171717 !important;color: #e4e4e4 !important;">
+$ cat your-bilingual-text | hanspell-cli 2>&1 > /dev/null | grep '^✓.*[가-힣].*→'
+</pre>
 클립보드에 복사된 문장을 입력 없이 바로 교정하려면, 
 매킨토시 사용자는 `pbpaste` 명령을, X 윈도 시스템 사용자는 `xclip -o` 명령을 
 이용할 수 있습니다.
-```
+<pre style="width: 100%; background-color: #171717 !important;color: #e4e4e4 !important;">
 $ pbpaste | hanspell-cli
-```
+</pre>
 
 마이크로소프트 윈도우 사용자는 먼저 명령 창에서 코드 페이지를 UTF-8으로 바꿔야 
 합니다.
-```
+<pre style="width: 100%; background-color: #171717 !important;color: #e4e4e4 !important;">
 C:\>chcp 65001 
 C:\>type your-text.utf-8 | hanspell-cli
-```
+</pre>
 
 ## 라이브러리 사용법
 `hanspell` 라이브러리는 `spellCheckByDAUM`과 `spellCheckByPNU`, 두 개의 
