@@ -125,9 +125,10 @@ hanspell.spellCheckByPNU(sentence, 6000, console.log, end, error);
 추가로 가집니다. 
 
 위의 예시에서 `sentence`가 300 단어 또는 1000자를 넘으면, 인자로 전달된
-`console.log`는 여러 번 호출되지만 `end`는 항상 한 번만 호출됩니다.
+`console.log`는 여러 번 호출되지만 `end`는 항상 마지막에 한 번만 호출됩니다.
 
 ## 남은 일
 - [x] 라이브러리 호출 결과 JSON에 설명과 예시 속성 추가.
+- [ ] 리액트를 이용한 HTML 버전 개발.
 - [ ] 일렉트론을 이용한 UI 버전 개발.
 - [ ] Atom과 VS Code를 위한 `lint` 인터페이스 플러그인 개발.
