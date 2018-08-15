@@ -33,6 +33,16 @@ $ hanspell-cli -h
 문장을 직접 입력하거나 클립보드에서 복사해서 맞춤법을 교정합니다. 다음은 사용 
 예시입니다.
 
+<pre style="background-color: black;
+  color: white;
+  font-size: medium ; 
+  font-family: Consolas,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono, 
+               Bitstream Vera Sans Mono,Courier New, monospace;
+  display: inline;">
+-bash-3.2$ groups
+unixuser feegroup figroup fogroup fumgroup
+</pre>
+
 <pre><code>$ hanspell-cli
 나는 차가운 모래속에 두 손을 넣고 검게 빛나는 바다를 바라본다.
 우주의 가장자리 같다.
