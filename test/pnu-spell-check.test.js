@@ -16,24 +16,24 @@ describe('spellCheckByPNU', function () {
     const timeout = 4000;
     const check = function (data) {
       assert.equal(data.length, 4);
-      assert.equal(data[0].text, "스쳐지나가게");
-      assert.equal(data[0].match, "스쳐 지나가게");
-      assert.equal(data[1].text, "내버려두리라");
-      assert.equal(data[1].match, "내버려 도리라");
-      assert.equal(data[2].text, "혼속에");
-      assert.equal(data[2].match, "혼 속에");
-      assert.equal(data[3].text, "행복되게");
-      assert.equal(data[3].match, "행복하게");
+      assert.equal(data[0].token, "스쳐지나가게");
+      assert.equal(data[0].suggestions[0], "스쳐 지나가게");
+      assert.equal(data[1].token, "내버려두리라");
+      assert.equal(data[1].suggestions[0], "내버려 도리라");
+      assert.equal(data[2].token, "혼속에");
+      assert.equal(data[2].suggestions[0], "혼 속에");
+      assert.equal(data[3].token, "행복되게");
+      assert.equal(data[3].suggestions[0], "행복하게");
     };
     spellCheck(sentence, timeout, check, done);
   });
-  it('should have alternative matches', function (done) {
+  it('should have 2 suggestions', function (done) {
     const sentence = '리랜드는 얼굴 골격이 굵은 게, 어머니 쪽을 닮았다.';
     const timeout = 4000;
     const check = function (data) {
-      assert.notEqual(data[0].help.indexOf('이 어절은 분석할 수 없으므로'), -1);
-      assert.equal(data[0].alternativeMatches.length, 1);
-      assert.equal(data[0].alternativeMatches[0].indexOf('시랜드'), 0);
+      assert.notEqual(data[0].info.indexOf('이 어절은 분석할 수 없으므로'), -1);
+      assert.equal(data[0].suggestions.length, 2);
+      assert.equal(data[0].suggestions[1].indexOf('시랜드'), 0);
     };
     spellCheck(sentence, timeout, check, done);
   });

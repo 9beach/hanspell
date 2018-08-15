@@ -16,11 +16,11 @@ describe('spellCheckByDAUM', function () {
     const timeout = 4000;
     const check = function (data) {
       assert.equal(data.length, 2);
-      assert.equal(data[0].text, "스쳐지나가게");
-      assert.equal(data[0].match, "스쳐 지나가게");
+      assert.equal(data[0].token, "스쳐지나가게");
+      assert.equal(data[0].suggestions[0], "스쳐 지나가게");
       assert.notEqual(data[0].context.indexOf("람이 스쳐지나가게 내"), -1);
-      assert.equal(data[1].text, "혼속에");
-      assert.equal(data[1].match, "혼 속에");
+      assert.equal(data[1].token, "혼속에");
+      assert.equal(data[1].suggestions[0], "혼 속에");
       assert.notEqual(data[1].context.indexOf("랑이 내 혼속에 살아"), -1);
     };
     spellCheck(sentence, timeout, check, done);
@@ -29,12 +29,12 @@ describe('spellCheckByDAUM', function () {
     const sentence = '한바퀴 돌껀데 말했더만';
     const timeout = 4000;
     const check = function (data) {
-      assert.notEqual(data[0].help.indexOf('수사 또는 수관형사와'), -1);
-      assert.notEqual(data[0].help.indexOf('다섯 마리'), -1);
-      assert.notEqual(data[1].help.indexOf('잘못된 표기로 의존명사'), -1);
-      assert.notEqual(data[1].help.indexOf('그 일은 내가'), -1);
-      assert.notEqual(data[2].help.indexOf('잘못된 어미입니다'), -1);
-      assert.notEqual(data[2].help.indexOf('잤더니만'), -1);
+      assert.notEqual(data[0].info.indexOf('수사 또는 수관형사와'), -1);
+      assert.notEqual(data[0].info.indexOf('다섯 마리'), -1);
+      assert.notEqual(data[1].info.indexOf('잘못된 표기로 의존명사'), -1);
+      assert.notEqual(data[1].info.indexOf('그 일은 내가'), -1);
+      assert.notEqual(data[2].info.indexOf('잘못된 어미입니다'), -1);
+      assert.notEqual(data[2].info.indexOf('잤더니만'), -1);
     };
     spellCheck(sentence, timeout, check, done);
   });
