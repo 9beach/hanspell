@@ -38,7 +38,7 @@ $ hanspell-cli
 나는 차가운 모래속에 두 손을 넣고 검게 빛나는 바다를 바라본다.
 우주의 가장자리 같다.
 쇼코는 해변에 서 있으면 이세상의 변두리에 선 느낌이 든다고 말했었다.
-<font color=grey><i>[CTRL + D]</i></font>
+<kbd>CTRL + D</kbd>
 ✓ 모래속에 <font color=grey>→</font> 모래 속에<font color=grey>
 띄어쓰기 오류입니다. 대치어를 참고하여 고쳐 쓰세요.</font>
 ✓ 이세상의 <font color=grey>→</font> 이 세상의<font color=grey>
