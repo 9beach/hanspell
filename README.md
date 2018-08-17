@@ -42,15 +42,11 @@ $ hanspell-cli
 띄어쓰기 오류입니다. 대치어를 참고하여 고쳐 쓰세요.</font>
 이세상의 <font color=grey>→</font> 이 세상의<font color=grey>
 관형사는 뒤에 오는 말과 띄어 쓰는 것이 옳습니다.
-
-(예)
-오빠는 새 신발을 사자마자 헌 신발을 버렸다
-아저씨, 그 사과 얼마예요?
-그녀와 헤어진 지 한 달이 넘었다.</font>
-나는 차가운 <span style='background-color: #e4e4e4 !important'><font style="color: #171717 !important;">모래 속에</font></span> 두 손을 넣고 검게 빛나는 바다를 바라본다.
-우주의 가장자리 같다.
-쇼코는 해변에 서 있으면 <span style='background-color: #e4e4e4 !important'><font style="color: #171717 !important;">이 세상의</font></span> 변두리에 선 느낌이 든다고 말했었다.
+<i>...</i>
 </pre>
+
+![스크린샷](test/hanspell-screenshot.png?raw=true "스크린샷")
+
 파일의 맞춤법을 교정하려면 다음과 같이 명령합니다.
 ```
 $ cat your-text | hanspell-cli
