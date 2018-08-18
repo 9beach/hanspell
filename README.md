@@ -13,7 +13,7 @@ Node.js 프로젝트에서 `hanspell` 라이브러리를 사용하려면 다음�
 설치합니다. 
 ```
 $ cd my-project
-$ npm install hanspell
+$ npm install --save hanspell
 ```
 
 ## 명령어 사용법
