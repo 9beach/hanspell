@@ -75,6 +75,12 @@ C:\>chcp 65001
 C:\>type your-text.utf-8 | hanspell-cli
 ```
 
+교정 대상에서 제외할 단어를 `~/.hanspell-ignore` 파일에 지정할 수 있습니다. 다음과 같이 지정하면 "깃헙", "도스토예프스키"를 올바른 단어로 간주합니다.
+```
+$ cat ~/.git-ignore
+깃헙
+도스토예프스키
+```
 ## 라이브러리 사용법
 `hanspell` 라이브러리는 `spellCheckByDAUM`과 `spellCheckByPNU`, 두 개의 
 함수를 제공합니다. 다음은 사용 예시입니다.
