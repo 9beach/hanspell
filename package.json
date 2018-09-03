@@ -17,7 +17,7 @@
   "license": "MIT",
   "main": "lib/index.js",
   "scripts": {
-    "test": "mocha && test/cli-test.sh",
+    "test": "test/cli-test.sh && mocha",
     "lint": "jshint lib/**.js test/**.js"
   },
   "preferGlobal": true,
