@@ -5,15 +5,16 @@
 [![Build Status](https://travis-ci.org/9beach/hanspell.svg?branch=master)](https://travis-ci.org/9beach/hanspell) [![npm version](https://badge.fury.io/js/hanspell.svg)](https://badge.fury.io/js/hanspell)
 
 ## 설치
-셸에서 `hanspell-cli` 명령어를 사용하려면 다음과 같이 설치합니다. 
+먼저 [Node.js](https://nodejs.org/ko/)를 설치하세요.
+
+셸에서 `hanspell-cli` 명령어를 사용하려면 다음과 같이 설치하세요.
 ```
 $ sudo npm install -g hanspell
 ```
-Node.js 프로젝트에서 `hanspell` 라이브러리를 사용하려면 다음과 같이 
-설치합니다. 
+
+설치 환경에 따라 `sudo` 명령어를 빼야 할 수 있습니다.
 ```
-$ cd my-project
-$ npm install --save hanspell
+C:\>npm install -g hanspell
 ```
 
 ## 명령어 사용법
@@ -32,7 +33,7 @@ $ hanspell-cli -h
 
 문장을 직접 입력하거나 클립보드에서 복사해서 맞춤법을 교정합니다. 다음은 사용 
 예시입니다.
-<pre style="width: 100%; background-color: #171717 !important;color: #e4e4e4 !important;">
+<pre>
 $ hanspell-cli
 나는 차가운 모래속에 두 손을 넣고 검게 빛나는 바다를 바라본다.
 우주의 가장자리 같다.
@@ -42,7 +43,7 @@ $ hanspell-cli
 띄어쓰기 오류입니다. 대치어를 참고하여 고쳐 쓰세요.</font>
 이세상의 <font color=grey>→</font> 이 세상의<font color=grey>
 관형사는 뒤에 오는 말과 띄어 쓰는 것이 옳습니다.
-<i>...</i>
+...
 </pre>
 
 ![스크린샷](test/hanspell-screenshot.png?raw=true "한스펠 스크린샷")
@@ -68,20 +69,33 @@ $ cat your-text | hanspell-cli 2>&1 > /dev/null | grep '→'
 ```
 $ pbpaste | hanspell-cli
 ```
-마이크로소프트 윈도우 사용자는 먼저 명령 창에서 코드 페이지를 UTF-8으로 바꿔야 
-합니다.
+`~/.hanspell-ignore` 파일에, 교정 대상에서 제외할 단어를 
+[글로브 패턴](https://ko.wikipedia.org/wiki/글로브_(프로그래밍))으로 지정할 수
+있습니다. 다음은 "이니셔티브"로 시작하는 문자열과 "ㅎㅎㅎ"를 교정 대상에서 
+제외한 예입니다.
 ```
-C:\>chcp 65001 
+이니셔티브*
+ㅎㅎㅎ
+```
+
+## 마이크로소프트 윈도우 환경
+
+파일의 맞춤법을 교정하려면 반드시 UTF-8 인코딩으로 저장해야 합니다.
+```
 C:\>type your-text.utf-8 | hanspell-cli
 ```
 
-교정 대상에서 제외할 단어를 `~/.hanspell-ignore` 파일에 지정할 수 있습니다. 다음과 같이 지정하면 "깃헙", "도스토예프스키"를 올바른 단어로 간주합니다.
-```
-$ cat ~/.git-ignore
-깃헙
-도스토예프스키
-```
+교정할 문장의 입력을 종료할 때는 리눅스나 매킨토시와 달리 <kbd>CTRL + DD</kbd>
+또는 <kbd>CTRL + C</kbd>를 입력하세요.  
+
 ## 라이브러리 사용법
+
+Node.js 프로젝트에서 `hanspell` 라이브러리를 사용하려면 먼저 다음을 실행하세요.
+```
+$ cd my-project
+$ npm install --save hanspell
+```
+
 `hanspell` 라이브러리는 `spellCheckByDAUM`과 `spellCheckByPNU`, 두 개의 
 함수를 제공합니다. 다음은 사용 예시입니다.
 ```javascript
