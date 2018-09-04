@@ -47,6 +47,8 @@ $ hanspell-cli
 
 ![스크린샷](test/hanspell-screenshot.png?raw=true "한스펠 스크린샷")
 
+<kbd>CTRL + D</kbd>는 반드시 줄을 바꾸고 맨 앞에서 입력해야 합니다.
+
 파일의 맞춤법을 교정하려면 다음과 같이 명령합니다.
 ```
 $ cat your-text | hanspell-cli
@@ -68,13 +70,13 @@ $ cat your-text | hanspell-cli 2>&1 > /dev/null | grep '→'
 ```
 $ pbpaste | hanspell-cli
 ```
-`~/.hanspell-ignore` 파일에, 교정 대상에서 제외할 단어를 
+`~/.hanspell-ignore` 파일에, 교정 대상에서 제외할 문자열을 
 [글로브 패턴](https://ko.wikipedia.org/wiki/글로브_(프로그래밍))으로 지정할 수
-있습니다. "이니셔티브"로 시작하는 문자열과 "ㅎㅎㅎ"를 교정 대상에서 제외하려면
+있습니다. "그로떼스끄"로 시작하는 문자열과 "빠이"를 교정 대상에서 제외하려면
 다음과 같이 설정하세요.
 ```
-이니셔티브*
-ㅎㅎㅎ
+그로떼스끄*
+빠이
 ```
 
 ## 마이크로소프트 윈도우 환경
