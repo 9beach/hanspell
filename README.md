@@ -5,9 +5,8 @@
 [![Build Status](https://travis-ci.org/9beach/hanspell.svg?branch=master)](https://travis-ci.org/9beach/hanspell) [![npm version](https://badge.fury.io/js/hanspell.svg)](https://badge.fury.io/js/hanspell)
 
 ## 설치
-먼저 [Node.js](https://nodejs.org/ko/)를 설치하세요.
-
-셸에서 `hanspell-cli` 명령어를 사용하려면 다음과 같이 설치하세요.
+먼저 [Node.js](https://nodejs.org/ko/)를 설치한 뒤, 다음을 실행하면 `hanspell`을
+설치합니다.
 ```
 $ sudo npm install -g hanspell
 ```
@@ -31,8 +30,8 @@ $ hanspell-cli -h
   -h, --help              도움말을 출력합니다
 ```
 
-문장을 직접 입력하거나 클립보드에서 복사해서 맞춤법을 교정할 수 있습니다. 다음은 사용 
-예시입니다.
+문장을 직접 입력하거나 클립보드에서 복사해서 맞춤법을 교정할 수 있습니다. 다음은
+사용 예시입니다.
 <pre>
 $ hanspell-cli
 나는 차가운 모래속에 두 손을 넣고 검게 빛나는 바다를 바라본다.
@@ -71,8 +70,8 @@ $ pbpaste | hanspell-cli
 ```
 `~/.hanspell-ignore` 파일에, 교정 대상에서 제외할 단어를 
 [글로브 패턴](https://ko.wikipedia.org/wiki/글로브_(프로그래밍))으로 지정할 수
-있습니다. "이니셔티브"로 시작하는 문자열과 "ㅎㅎㅎ"를 교정 대상에서 
-제외하려면 다음과 같이 설정하세요.
+있습니다. "이니셔티브"로 시작하는 문자열과 "ㅎㅎㅎ"를 교정 대상에서 제외하려면
+다음과 같이 설정하세요.
 ```
 이니셔티브*
 ㅎㅎㅎ
@@ -80,7 +79,7 @@ $ pbpaste | hanspell-cli
 
 ## 마이크로소프트 윈도우 환경
 
-파일의 맞춤법을 교정하려면 반드시 UTF-8 인코딩으로 저장해야 합니다.
+`hanspell`은 UTF-8 인코딩으로 저장된 파일만 인식합니다.
 ```
 C:\>type your-text.utf-8 | hanspell-cli
 ```
