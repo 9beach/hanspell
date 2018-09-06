@@ -31,7 +31,7 @@ $ hanspell-cli -h
 ```
 
 문장을 직접 입력하거나 클립보드에서 복사해서 맞춤법을 교정할 수 있습니다. 다음은
-사용 예시입니다.
+사용 예시입니다. <kbd>CTRL + D</kbd>는 줄을 바꾸고 맨 앞에서 입력해야 합니다.
 <pre>
 $ hanspell-cli
 나는 차가운 모래속에 두 손을 넣고 검게 빛나는 바다를 바라본다.
@@ -46,8 +46,6 @@ $ hanspell-cli
 </pre>
 
 ![스크린샷](test/hanspell-screenshot.png?raw=true "한스펠 스크린샷")
-
-<kbd>CTRL + D</kbd>는 반드시 줄을 바꾸고 맨 앞에서 입력해야 합니다.
 
 파일의 맞춤법을 교정하려면 다음과 같이 명령합니다.
 ```
@@ -64,9 +62,8 @@ $ cat your-text | hanspell-cli 2> /dev/null
 ```
 $ cat your-text | hanspell-cli 2>&1 > /dev/null | grep '→'
 ```
-클립보드에 복사된 문장을 입력 없이 바로 교정하려면, 
-매킨토시 사용자는 `pbpaste` 명령을, X 윈도 시스템 사용자는 `xclip -o` 명령을 
-이용할 수 있습니다.
+클립보드에 복사된 문장을 입력 없이 바로 교정하려면, 매킨토시 사용자는 `pbpaste` 
+명령을, X 윈도 시스템 사용자는 `xclip -o` 명령을 이용할 수 있습니다.
 ```
 $ pbpaste | hanspell-cli
 ```
