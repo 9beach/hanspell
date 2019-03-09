@@ -1,6 +1,10 @@
 const assert = require('assert');
 const spellCheck = require('../lib/index').spellCheckByDAUM;
 
+const never = function() {
+  assert.equal(true, false);
+};
+
 describe('spellCheckByDAUM', function () {
   it('should fetch 2 data', function (done) {
     const sentence = 
@@ -23,7 +27,7 @@ describe('spellCheckByDAUM', function () {
       assert.equal(data[1].suggestions[0], "혼 속에");
       assert.notEqual(data[1].context.indexOf("랑이 내 혼속에 살아"), -1);
     };
-    spellCheck(sentence, timeout, check, done);
+    spellCheck(sentence, timeout, check, done, never);
   });
   it('should fetch 3 data', function (done) {
     const sentence = '한바퀴 돌껀데 말했더만';
@@ -36,6 +40,6 @@ describe('spellCheckByDAUM', function () {
       assert.notEqual(data[2].info.indexOf('잘못된 어미입니다'), -1);
       assert.notEqual(data[2].info.indexOf('잤더니만'), -1);
     };
-    spellCheck(sentence, timeout, check, done);
+    spellCheck(sentence, timeout, check, done, never);
   });
 });

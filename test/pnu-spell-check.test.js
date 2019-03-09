@@ -1,6 +1,10 @@
 const assert = require('assert');
 const spellCheck = require('../lib/index').spellCheckByPNU;
 
+const never = function() {
+  assert.equal(true, false);
+};
+
 describe('spellCheckByPNU', function () {
   it('should fetch 4 data', function (done) {
     const sentence = 
@@ -25,7 +29,7 @@ describe('spellCheckByPNU', function () {
       assert.equal(data[3].token, "행복되게");
       assert.equal(data[3].suggestions[0], "행복하게");
     };
-    spellCheck(sentence, timeout, check, done);
+    spellCheck(sentence, timeout, check, done, never);
   });
   it('should have 2 suggestions', function (done) {
     const sentence = '리랜드는 얼굴 골격이 굵은 게, 어머니 쪽을 닮았다.';
@@ -35,6 +39,6 @@ describe('spellCheckByPNU', function () {
       assert.equal(data[0].suggestions.length, 2);
       assert.equal(data[0].suggestions[1].indexOf('시랜드'), 0);
     };
-    spellCheck(sentence, timeout, check, done);
+    spellCheck(sentence, timeout, check, done, never);
   });
 });
