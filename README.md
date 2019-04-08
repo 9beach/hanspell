@@ -67,7 +67,7 @@ $ cat your-text | hanspell-cli 2>&1 > /dev/null | grep '→'
 ```
 $ pbpaste | hanspell-cli
 ```
-`~/.hanspell-ignore` 파일에, 교정 대상에서 제외할 문자열을 
+`~/.hanspell-ignore` 파일에 교정 대상에서 제외할 문자열을 
 [글로브 패턴](https://ko.wikipedia.org/wiki/글로브_(프로그래밍))으로 지정할 수
 있습니다. "그로떼스끄"로 시작하는 문자열과 "빠이"를 교정 대상에서 제외하려면
 다음과 같이 설정하세요.
@@ -75,7 +75,7 @@ $ pbpaste | hanspell-cli
 그로떼스끄*
 빠이
 ```
-`~/.hanspell-history` 파일에, 교정 내역이 기록됩니다.
+`~/.hanspell-history` 파일에 교정 내역이 기록됩니다.
 ```
 $ sort < ~/.hanspell-history | uniq -c | sort -nr | head 
   17 모래속에 → 모래 속에
