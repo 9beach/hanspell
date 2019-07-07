@@ -42,7 +42,7 @@ $ hanspell-cli
 띄어쓰기 오류입니다. 대치어를 참고하여 고쳐 쓰세요.</font>
 이세상의 <font color=grey>→</font> 이 세상의<font color=grey>
 관형사는 뒤에 오는 말과 띄어 쓰는 것이 옳습니다.
-...
+...</font>
 </pre>
 
 ![스크린샷](./hanspell-screenshot.png?raw=true "한스펠 스크린샷")
