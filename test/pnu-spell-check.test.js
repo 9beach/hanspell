@@ -31,13 +31,11 @@ describe('spellCheckByPNU', function () {
     };
     spellCheck(sentence, timeout, check, done, never);
   });
-  it('should have 2 suggestions', function (done) {
-    const sentence = '리랜드는 얼굴 골격이 굵은 게, 어머니 쪽을 닮았다.';
+  it('should have 5 suggestions', function (done) {
+    const sentence = '마이골';
     const timeout = 4000;
     const check = function (data) {
-      assert.notEqual(data[0].info.indexOf('이 어절은 분석할 수 없으므로'), -1);
-      assert.equal(data[0].suggestions.length, 2);
-      assert.equal(data[0].suggestions[1].indexOf('시랜드'), 0);
+      assert.equal(data[0].suggestions.length, 5);
     };
     spellCheck(sentence, timeout, check, done, never);
   });
