@@ -8,8 +8,8 @@ const never = function() {
 describe('spellCheckByDAUM', function () {
   it('should fetch 2 data', function (done) {
     const sentence = 
-`여름 저녁이 푸르를 때 난 가리라 
-보리 무성한 사이 가느다란 풀 짓밟힌 샛길 속으로. 
+`여름 저녁이 푸르를 때\t난 가리라
+보리 무성한 사이\t\t\t가느다란 풀 짓밟힌 샛길 속으로.
 몽상가인 난, 발에 신선함을 느끼리라. 
 난 내 벗은 머리를 바람이 스쳐지나가게 내버려두리라. 
 
@@ -41,5 +41,26 @@ describe('spellCheckByDAUM', function () {
       assert.notEqual(data[2].info.indexOf('잤더니만'), -1);
     };
     spellCheck(sentence, timeout, check, done, never);
+  });
+  it('should call check function more than once', function (done) {
+    this.timeout(40000);
+    const sentence = '한바퀴 돌껀데 말했더만\n'.repeat(200);
+    const timeout = 40000;
+    var called = 0;
+    var suggested = 0;
+    const check = function (data) {
+      called += 1;
+      suggested += data.length;
+      assert.ok(data.length > 2);
+    };
+    const error = function (err) {
+      console.error(err);
+    };
+    const finalCheck = function () {
+      assert.ok(called > 1);
+      assert.ok(suggested > 5);
+      done();
+    };
+    spellCheck(sentence, timeout, check, finalCheck, error);
   });
 });
