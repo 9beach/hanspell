@@ -63,8 +63,9 @@ $ cat your-text | hanspell-cli 2> /dev/null
 ```
 $ cat your-text | hanspell-cli 2>&1 > /dev/null | grep '->'
 ```
-클립보드에 복사된 문장을 입력 없이 바로 교정하려면, 매킨토시 사용자는 `pbpaste` 
-명령을, X 윈도 시스템 사용자는 `xclip -o` 명령을 이용할 수 있습니다.
+클립보드에 복사된 문장을 입력 없이 바로 교정하려면, 맥OS 사용자는 `pbpaste`, 
+X 윈도 시스템 사용자는 `xclip -o`, 마이크로소프트 윈도우 사용자는 
+`powershell.exe Get-Clipboard` 명령을 이용할 수 있습니다.
 ```
 $ pbpaste | hanspell-cli
 ```
