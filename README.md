@@ -110,7 +110,7 @@ $ npm install --save hanspell
 ```
 
 `hanspell` 라이브러리는 `spellCheckByDAUM`과 `spellCheckByPNU`, 두 개의 
-함수를 제공합니다. 다음은 사용 예시입니다.
+함수를 제공합니다. 다음은 사용 예입니다.
 ```javascript
 // hanspell-example.js
 const hanspell = require('hanspell');
