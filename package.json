@@ -1,6 +1,6 @@
 {
   "name": "hanspell",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "description": "(주)다음과 부산대학교 인공지능연구실/(주)나라인포테크의 온라인 서비스를 이용한 한글 맞춤법 검사기.",
   "homepage": "https://github.com/9beach/hanspell",
   "author": {
@@ -17,8 +17,8 @@
   "license": "MIT",
   "main": "lib/index.js",
   "scripts": {
-    "test": "mocha && test/cli-test.sh",
-    "lint": "jshint lib/**.js test/**.js"
+    "test": "mocha && test/cli.test.sh",
+    "lint": "eslint ."
   },
   "preferGlobal": true,
   "bin": {
@@ -39,7 +39,12 @@
     "unescape": "^1.0.1"
   },
   "devDependencies": {
-    "jshint": "^2.10.3",
-    "mocha": "^6.0.0"
+    "eslint": "^7.19.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-prettier": "^7.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.3.1",
+    "mocha": "^6.0.0",
+    "prettier": "^2.2.1"
   }
 }
