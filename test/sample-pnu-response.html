@@ -1,544 +1,229 @@
 <!DOCTYPE html>
-
 <html>
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>한국어 맞춤법/문법 검사기</title>
+<link rel='stylesheet' type='text/css' href='css/speller.css'>
+<link rel='stylesheet' type='text/css' href='css/redesign.css'>
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="js/speller.js"></script>
 
- <head>
-	<title>한국어 맞춤법/문법 검사기</title>
-	<meta http-equiv='Content-Type' content='text/html; charset=UTF-8'> 
- <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'> 
-	<link rel='stylesheet' href='https://code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css'>
-	<link rel='stylesheet' type='text/css' href='../speller.css'>
-	<style type='text/css'>	</style>
-	<script type='text/javascript' src='../jquery-1.10.2.js'></script>
-	<script src='https://code.jquery.com/ui/1.10.4/jquery-ui.js'></script>
-	<script type="text/javascript" src="../ZeroClipboard.min.js"></script>
-	<script src='../speller(for NewUI).js'></script>
- </head>
+<script type="text/javascript">
+$(document).ready(function(){
+	data = [{"str":"여름 저녁이 푸르를 때\t난 가리라 보리 무성한 사이\t\t\t가느다란 풀 짓밟힌 샛길 속으로. 몽상가인 난, 발에 신선함을 느끼리라. 난 내 벗은 머리를   바람이 스쳐지나가게 내버려두리라.  난 말하지 않으련다, 아무것도 생각지 않으련다. 그러나 한없는 사랑이 내 혼속에 살아오리니 그럼 유랑민처럼 멀리 아주 멀리 가리라, 여인과 같이 있는 것처럼 행복되게, 이리저리 자연을","errInfo":[{"help":"&apos;지나가다&apos;는 보조 용언으로 볼 수 없으므로 띄어 씁니다.","errorIdx":0,"correctMethod":2,"start":89,"end":95,"orgStr":"스쳐지나가게","candWord":"스쳐 지나가게"},{"help":"보조용언과 본용언은 띄어 쓰는 것이 원칙이지만 붙여 쓰는 것도 허용합니다. 그러나 보조용언이 2개 이상 붙어 있을 때는 마지막 보조용언을 띄어 쓰고, &apos;합성동사 + 보조용언&apos;일 때는 보조용언을 띄어 써야 합니다. 단, &quot;합성동사 + 보조용언 &apos;-어지다&apos; &quot;로 쓰일 때는 뒤의 &apos;-어지다&apos;를 붙여 써야 합니다.<br/><br/>예 ) 덤벼들어 보아라. 이루어져야 한다. 넘어뜨려지다. 받아들여지다.","errorIdx":1,"correctMethod":2,"start":96,"end":102,"orgStr":"내버려두리라","candWord":"내버려 도리라"},{"help":"띄어쓰기 오류입니다. 대치어를 참고하여 띄어 쓰도록 합니다.","errorIdx":2,"correctMethod":1,"start":146,"end":149,"orgStr":"혼속에","candWord":"혼 속에"},{"help":"&lt; 철자법 오류에 대한 도움말 &gt; 우리말에서 단어가 많이 틀리는 경우에 대한 도움말입니다.<br/><br/>1. 사전에 없는 글자를 쓴 경우 발음이 비슷하거나 뜻이 비슷해서 사전에는 존재하지 않는 단어를 만들어서 쓴 경우입니다.<br/><br/>(예) 온골지다 (X)옹골지다 (O)<br/>온란전선 (X)온난전선 (O)<br/>욱씬거리다 (X)욱신거리다 (O)<br/>의기주의 (X)이기주의 (O)<br/><br/>2. 실제로 단어는 존재하나 많이 쓰이지 않으므로 많이 쓰이는 다른 단어로 바꾸어 쓰는 것이 좋은 경우입니다.<br/><br/>(예) 각골난망하다 (X) 각골난망이다(O)<br/><br/>3. 의성어, 의태어 등은 비슷한 발음이 반복하는 경우가 많으므로 틀리는 수가 많습니다. 그러므로 사전에 있는 바른 표기로 쓰시길 바랍니다.<br/><br/>(예) 우당탕탕거리다 (X)우당탕거리다 (O)<br/>으시시 (X)으스스 (O)<br/>주루루 (X)주르르 (O)<br/>파등등파드등 (X)파드득파드득 (O)<br/>맨숭맨숭하다 (X)맨송맨송하다 (O)<br/><br/>4. 단어를 줄여 써서 그 뜻이 잘 전달되지 않는 경우입니다. 이 경우는 단어를 원래의 뜻이 전달되도록 풀어서 쓰는 것이 올바릅니다.<br/><br/>(예) 예회 (X)정례회 (O)<br/>오가피 (X)오가피나무 (O)<br/>뒷걸음하다 (X) 뒷걸음질하다 (O)<br/>젯밥 (X)제삿밥 (O)<br/><br/>5. 단어를 필요 이상으로 길게 써서 원래의 뜻을 더 알기 어렵게 하는 경우나, 의미를 반복해서 쓰는 경우입니다.<br/><br/>(예) 증조할아버지님 (X)증조할아버님 (O)<br/>혹시나도 (X)혹시 (O)<br/>보아있다 (X)보았다 (O)<br/>보아지다 (X)봐지다 (O)<br/><br/>6. 한자어를 틀리게 표기한 경우<br/><br/>(예) 육면채 (X)육면체 (O)<br/>의기충전 (X)의기충천 (O)<br/>의이신청 (X)이의신청 (O)<br/>의재민 (X)이재민 (O)<br/>이견도출 (X)의견도출 (O)<br/>이견충돌 (X)의견충돌 (O)<br/>가인방명 (X)가인박명 (O)","errorIdx":3,"correctMethod":2,"start":193,"end":197,"orgStr":"행복되게","candWord":"행복하게"}],"idx":0}];
+	pageIdx = 0;
+	/*<![CDATA[*/
+	if(1){
+		totalPageCnt = 1;
+	}
+	/*]]>*/
+	data = eval(data);
 
-<!-- Google 통계 Analytics 수집 삽입 스크립트 시작  -->
-<meta name='google-site-verification' content='O10g1CUkQY4e8HJygeA4hfVN3Lb0TryxgxyV0HT_dnA'/>
-	<script type="text/javascript">
-		var gaJsHost = "https://ssl."
-		document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-	</script>
-	<script type="text/javascript">
-		try {
-		var pageTracker = _gat._getTracker("UA-12496734-2");
-		pageTracker._trackPageview();
-	} catch(err) {}</script>
-<!-- 구글 통계 스크립트 끝  -->
-
- <body leftmargin='0' topmargin='0' text='#333333' Onload='fOnLoadProc();'>
-	<!-- =============== -->
-	<!-- =============== -->
-	<table id='tableMain'>
+	makeHTML(0);
+	
+	if(totalPageCnt != 1){
+		if(pageIdx == 0){
+			toast("총 " +totalPageCnt+"페이지입니다. 아래 화살표를 이용해 이동해주세요.");
+		}   
+		
+		document.getElementById('pageAnnounce').innerHTML = "총 " +totalPageCnt+"페이지 중 " + (pageIdx+1) +"페이지입니다.<br>화살표를 눌러 페이지를 이동해주세요.";
+	}
+});
+</script>
+<body leftmargin="0" topmargin="0" text="#333333" style="zoom: 1;">
+	<table id="tableMain">
+		<!-- <tbody> -->
+		<!-- header -->
 		<tr id='trMain'>
-			<TD id='tdHead'  style="background-image:url('../images/title.gif');">
-				<a href='#' onclick="fShowHelpPopup('../');" >온라인 검사기 사용법</a>
-				&nbsp;|&nbsp;
-				<a href='#' onclick="fShowUserReportPopup('../');" >의견 보내기</a>
-			</TD>
-		</TR>
-		<tr id='trMain'>
-			<TD id='tdBody'>
-
-				<!-- 검사 결과 -->	
-				<table id='tableResult'>
+			<td id='tdHead' background='./images/title.gif'><a
+				href='javascript:void(0);' onclick='fShowHelpPopup("");' tabindex=5>온라인
+					검사기 사용법</a> &nbsp;|&nbsp; <a href='javascript:void(0);'
+				onclick='fShowUserReportPopup("./results");' tabindex=6>의견 보내기</a></td>
+		</tr>
+		<!-- /header -->
+		<tr id="trMain">
+			<td id="tdBody">
+				<!-- 검사 결과 -->
+				<table id="tableResult">
 
 					<!-- 원문 타이틀 / 새 문장 검사 -->
-					<TR >
-						<TD id='tdResultLTitle1' class='tdBox'>
-							<div width='88px'>
-								<img id='bgResultLTitle1' src='../images/bgResultLTitle1.gif'/>
-							</div>
-							<div style='float:right;'>
-								<font id='tResultLTitle1' style='float:right; margin-right:10px'>[총 글자 수]</font><br/>
-							</div>
-						</TD>
-						<TD><DIV style='width:11px;'></DIV></TD>
-						<TD id='tdResultRTitle' class='tdBox' >
-							<div width='88px'>
-								<img id='bgResultRTitle' src='../images/bgResultRTitle.gif'/>
-							</div>
-							<div style='float:right;'>
-								<span id='textUIChange' style='float:right; margin-right:10px' onclick='fChangeUIMode()'>옛 인터페이스 사용하기</span><br/>
-							</div>
-						</TD>
-					</TR>
+					<tbody>
+						<tr>
+							<td id="tdResultLTitle1" class="tdBox">
+								<div style="width: 88px;">
+									<img id="bgResultLTitle1" src="./images/bgResultLTitle1.gif">
+								</div>
+								<div style="float: right;">
+									<font id="tResultLTitle1" value="fRefreshResultTextLen()"
+										style="float: right; margin-right: 10px"></font><br>
+								</div>
+							</td>
+							<td><div style="width: 11px;"></div></td>
+							<td id="tdResultRTitle" class="tdBox">
+								<div style="width: 88px;">
+									<img id="bgResultRTitle" src="./images/bgResultRTitle.gif">
+								</div>
+							</td>
+						</tr>
 
-					<!-- 원문 / 오른쪽 결과 테이블 -->
-					<TR>
-						<TD class='tdMainFrame' >
+						<!-- 원문 / 오른쪽 결과 테이블 -->
+						<tr>
+							<td class="tdMainFrame">
+								<!-- 원문 -->
+								<div id="divLeft1" class="divScrollbarStyle"
+									onscroll="fScroll1()">
+									<table id="tableLeft1">
+										<tbody>
+											<tr>
+												<td id="tdCorrection1stBox" style="white-space: pre-wrap;"></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</td>
+							<td><div style="width: 11px;"></div></td>
+							<td id="tdRight" class="tdMainFrame" rowspan="4">
+								<!-- 교정 테이블  -->
+								<table class="divRight">
+									<tbody>
+										<tr style="border: 0px;">
+											<td id="tdCorrectionTable1st">
+												<div id="divCorrectionTableBox1st"
+													class="divScrollbarStyle divCorrectionTableBoxStyle">
+												</div>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
 
-							<!-- 원문 -->
-							<DIV id='divLeft1' class='divScrollbarStyle' onscroll='fScroll1()'>
-							<table id='tableLeft1'>
-								<TR><TD id='tdCorrection1stBox'></TD></TR>
-							</TABLE>
-							</DIV>
+						<!-- 바닥글-->
+						<tr>
+							<td id="tdResultLTitle3" class="tdMainFrame">
+								<table>
+									<tbody>
+										<tr>
+											<td id="tdForResultLTitle3"><img id="bgResultLTitle3"
+												src="./images/bgResultLTitle3.gif"> <font
+												id="pResultLTitle3">한 번에 300어절씩 검사합니다.</font></td>
+										</tr>
+									</tbody>
+								</table>
+							</td>
+						</tr>
+						<tr>
+							<td id="tdResultDesc" class="tdMainFrame" colspan="2"></td>
+						</tr>
+					</tbody>
+				</table> <!-- 버튼  -->
+				<table id="tableButton">
+					<tbody>
+						<tr>
+							<td>
+								<table style="width: 465px; float: left;">
+									<tbody>
+										<tr>
+											<td width="93px" align="left"><input id="btnRenew2"
+												type="image" tabindex="1" title="새 문서 검사하기"
+												src="./images/btnRenew2.gif"
+												onmouseout="this.src='./images/btnRenew2.gif';"
+												onmouseover="this.src='./images/btnRenew2_over.gif';"
+												onmousedown="this.src='./images/btnRenew2_click.gif';"
+												onclick="fRenew()"></td>
 
-						</TD>
-						<TD><DIV style='width:11px;'></DIV></TD>
-						<TD id='tdRight' class='tdMainFrame' rowspan=4>
-							<!-- 교정 테이블  -->
-							<TABLE class='divRight'>
-								<TR style='border:0px;'>
-									<TD id='tdCorrectionTable1st'>
-										<DIV id='divCorrectionTableBox1st' class='divScrollbarStyle divCorrectionTableBoxStyle'>
-										</DIV>
-									</TD>
-								</TR>
-							</TABLE>
-						</TD>
-					</TR>
-					
-					<!-- 바닥글-->
-					<TR>
-						<TD id='tdResultLTitle3' class='tdMainFrame' >
-							<TABLE><TR><TD id='tdForResultLTitle3'>
-								<img id='bgResultLTitle3' src='../images/bgResultLTitle3.gif'/>
-								<font id='pResultLTitle3' ></font>
-							</TD></TR></TABLE>
-						</TD>
-					</TR>
-					
-					<TR>
-						<TD id='tdResultDesc' class='tdMainFrame' colspan=2>
-						
-						</TD>
-					</TR>
-					
-				</TABLE>
-				
-				
-				<!-- 버튼  -->
-				<table id='tableButton'><TR><TD id='tdButton'>
-					<b id='idButtons'></b>
-					<form id='formNext' name='formNext' action='./checkNext.asp' method='post'>
-					</form>
-					<form id='formReCheck' name='formReCheck' action='./check.asp' method='post'>
-						<input id='text1' name='text1' type='hidden' value/>
-					</form>
-				</TD></TR></TABLE>
+											<td width="93px" align="left"><input id="btnOrgCopy"
+												type="image" width="88" height="39" tabindex="2"
+												title="결과 복사하기" src="./images/btnOrgCopy.gif"
+												onmouseout="this.src='./images/btnOrgCopy.gif';"
+												onmouseover="this.src='./images/btnOrgCopy_over.gif';"
+												onmousedown="this.src='./images/btnOrgCopy_click.gif';"
+												onclick="fAddClickEventToCopy()"></td>
 
+											<td width="80px" align="left"><input
+												id="btnGoBackEditor" type="image" tabindex="3" title="돌아가기"
+												src="./images/btnGoBackEditor.gif"
+												onmouseout="this.src='./images/btnGoBackEditor.gif';"
+												onmouseover="this.src='./images/btnGoBackEditor_over.gif';"
+												onmousedown="this.src='./images/btnGoBackEditor_click.gif';"
+												onclick="back();"></td>
 
-			</TD>
-		</TR>
+											<td width="60px" align="left">
+												<div style="width: 30px;" tabindex="4"></div>
+											</td>
 
+											<td id="prevBtn" width="60px" align="left"></td>
+											<td id="nextBtn" width="60px" align="left"></td>										
+										</tr>
+									</tbody>
+								</table>
+							</td>
+							<td id="pageAnnounce" width="300px" align="left" style="padding-bottom:15px"></td>
+						</tr>
+					</tbody>
+				</table>
+			</td>
+		</tr>
+		<!-- footer -->
+		<tr id="trMain">
+			<td id="tdTail">
 
-		<tr id='trMain'>
-			<TD id='tdTail'>
+				<table id="tableTail">
+					<tbody>
+						<tr id="trMain">
+							<td id="tdLogo" rowspan="3"
+								style="background-image: url('./images/logo.jpg');"></td>
+							<td id="tdCopyright">Copyrightⓒ2001 AI Lab &amp;
+								Narainfotech. All Rights Reserved.</td>
+							<td id='tdTailMenu'>
+								<p style='margin-left: 90px;'>
+									<a href='javascript:void(0);'
+										onclick='fShowOrderPopup("./results");' tabindex=7>맞춤법/문법
+										검사기 구매 문의<br>(MS Word/아래아 한글용)
+									</a>
+								</p>
+							</td>
+						</tr>
+						<tr id="trMain">
+							<td id="tdTailDesc" colspan="2">한국어 맞춤법/문법 검사기는 부산대학교
+								인공지능연구실과 (주)나라인포테크가 공동으로 만들고 있습니다.</td>
+						</tr>
+						<tr id="trMain">
+							<td id="tdTailDesc" colspan="2">새 인터페이스는 <a
+								href="http://pxd.co.kr/">pxd. inc.</a>의 <a
+								href="http://story.pxd.co.kr/1096">無異</a>님께서 제공해주셨습니다.
+							</td>
+						</tr>
+					</tbody>
+				</table>
 
-				<table id='tableTail'>
-					<tr id='trMain'>
-						<TD id='tdLogo' rowspan=3  style="background-image:url('../images/logo.jpg');"></TD>
-						<TD id='tdCopyright'>
-							Copyrightⓒ2001 AI Lab & Narainfotech. All Rights Reserved.
-						</TD>
-						<TD id='tdTailMenu'>
-							<p style='margin-left:90px;'>
-							<a href='#' onclick='fShowOrderPopup("../");'>맞춤법/문법 검사기 문의</a>
-							</p>
-						</TD>
-					</TR>
-					<tr id='trMain'>
-						<TD id='tdTailDesc' colspan=2>
-							한국어 맞춤법/문법 검사기는 부산대학교 인공지능연구실과 (주)나라인포테크가 공동으로 만들고 있습니다.
-						</TD>
-					</TR>
-					<tr id='trMain'>
-						<TD id='tdTailDesc' colspan=2>
-							새 인터페이스는 <a href='http://pxd.co.kr/'>pxd. inc.</a>의 <a href='http://story.pxd.co.kr/1096'>無異</a>님께서 제공해주셨습니다.
-						</TD>
-					</TR>
-				</TABLE>
-
-			</TD>
-		</TR>
-
-	</TABLE>
-
-
-	<!-- =============== -->
-	<!-- =============== -->
-	<table id='tableTitleGoHome'><TR><TD>
-		<a href="http://speller.cs.pusan.ac.kr/"><img id='btntitleGoHome' src='../images/titleGoHome.gif' alt='새 문서 검사하기' border='0'/></a>
-	</TD></TR></TABLE>
-
-
-	<div id='divPopupBackground'>
-	</div>
+			</td>
+		</tr>
+		<!-- /footer -->
+		<!-- 		</tbody> -->
+	</table>
+	<table id='tableTitleGoHome'>
+		<tr>
+			<td><a href="http://speller.cs.pusan.ac.kr"> <img
+					id='btntitleGoHome' src='images/titleGoHome.gif' title='home'
+					border="0" /></a></td>
+		</tr>
+	</table>
+	<div id='divPopupBackground' style="display:none;"></div>
 	<div id='divClosePopup'>
-		<input id='btnClosePopup' type='button' value='이전 화면' ONCLICK='fHidePopup();' />
+		<input id='btnClosePopup' type='button' value='이전 화면'
+			ONCLICK='fHidePopup();' />
 	</div>
-
-
 	<img id='imgPopup' />
-	<iframe id='framePopup' scrolling=no ></iframe>
-
-
-<iframe id='ifHidden' name='ifHidden' style='display:none; width:300px; height:200px;'></iframe>
-	<!-- =============== -->
-	<!-- =============== -->
-	<!-- 1차 교정 테이블 -->
-<DIV id='correctionTable' style='display:none; width:300px; height:200px;'>
-	<form id='formBugReport1' name='formBugReport' action='../BugReporting.asp' method='post' accept-charset='euc-kr'>
-
-		<!-- 세로로 가운데 정렬을 하려고 테이블로 묶음  -->
-		<table border='0' cellpadding='0' cellspacing='0' width='411' height='480' >
-		<TR><TD align='center' valign='center' >
-
-<br/>
-
-<table id='tableErr_0' class='tableErrCorrect' border='1' cellpadding='3' cellspacing='0'>
-	<!--틀린어절 -->
-	<TR>
-		<TD class='tdLT' title=0>입력 내용</TD>
-		<TD id='tdErrorWord_0' class='tdErrWord' style='color:#008000;' >얼어붙게 만들었다</TD>
-	</TR>
-	<!--대치어 -->
-	<TR>
-		<TD class='tdLT'>대치어</TD>
-		<TD id='tdReplaceWord_0' class='tdReplace' >얼어붙게 했다<br/></TD>
-	</TR>
-		<!--도움말 -->
-		<TR>
-			<TD class='tdLT'>도움말</TD>
-			<TD id='tdHelp_0' class='tdETNor' helpNum='11224'><br/>'~게 만들다'는 번역체 문구입니다. ' ~게 하다'를 쓰면 더 좋습니다.<br/><br/>&nbsp;&nbsp;(예) 먹게 만들다(X)<br/>&nbsp;&nbsp;(예) 먹게 하다 (O)</TD>
-		</TR>
-		<!--관련사이트 -->
-			<TR>
-			<TD class='tdLT'>관련학습<br/>사이트</TD>
-			<TD class='tdETNor' align=center><a href="http://urimal.cs.pusan.ac.kr/urimal_new/learn/spelling/ds/main.asp" target="PnuSpellHelp">어휘 결합정보 관련</a></TD>
-		</TR>
-		<!--오류보고 -->
-		<tr id='trBugReport_0'>
-			<TD class='tdLT'>의견</TD>
-			<TD id='tdBugReport_0' class='tdETNor'>
-		</TD>
-</TR>
-</TABLE><br/>
-
-<table id='tableErr_1' class='tableErrCorrect' border='1' cellpadding='3' cellspacing='0'>
-	<!--틀린어절 -->
-	<TR>
-		<TD class='tdLT' title=1>입력 내용</TD>
-		<TD id='tdErrorWord_1' class='tdErrWord' style='color:#0000FF;' >스크로프의</TD>
-	</TR>
-	<!--대치어 -->
-	<TR>
-		<TD class='tdLT'>대치어</TD>
-		<TD id='tdReplaceWord_1' class='tdReplace' >대치어 없음</TD>
-	</TR>
-		<!--도움말 -->
-		<TR>
-			<TD class='tdLT'>도움말</TD>
-			<TD id='tdHelp_1' class='tdETNor' helpNum='0'><br/>철자 검사를 해 보니 이 어절은 분석할 수 없으므로 틀린 말로 판단하였습니다.<br/><br/>후보 어절은 이 철자검사/교정기에서 띄어쓰기, 붙여 쓰기, 음절대치와 같은 교정방법에 따라 수정한 결과입니다.<br/><br/>후보 어절 중 선택하시거나 오류 어절을 수정하여 주십시오.<br/><br/>* 단, 사전에 없는 단어이거나 사용자가 올바르다고 판단한 어절에 대해서는 통과하세요!!</TD>
-		</TR>
-		<!--관련사이트 -->
-			<TR>
-			<TD class='tdLT'>관련학습<br/>사이트</TD>
-			<TD class='tdETNor' align=center>없음</TD>
-		</TR>
-		<!--오류보고 -->
-		<tr id='trBugReport_1'>
-			<TD class='tdLT'>의견</TD>
-			<TD id='tdBugReport_1' class='tdETNor'>
-		</TD>
-</TR>
-</TABLE><br/>
-
-<table id='tableErr_2' class='tableErrCorrect' border='1' cellpadding='3' cellspacing='0'>
-	<!--틀린어절 -->
-	<TR>
-		<TD class='tdLT' title=2>입력 내용</TD>
-		<TD id='tdErrorWord_2' class='tdErrWord' style='color:#FF0000;' >1킬로미터</TD>
-	</TR>
-	<!--대치어 -->
-	<TR>
-		<TD class='tdLT'>대치어</TD>
-		<TD id='tdReplaceWord_2' class='tdReplace' >1㎞<br/></TD>
-	</TR>
-		<!--도움말 -->
-		<TR>
-			<TD class='tdLT'>도움말</TD>
-			<TD id='tdHelp_2' class='tdETNor' helpNum='30614'><br/>수사와 단위 의존명사를 같이 쓸 때는&nbsp;&nbsp;대부분 아라비아 숫자와 영문 단위로 표기합니다. 법원도서관에서는 km, kg, %, ㎡ 등 각종 단위 부호를 나타낼 때는 ‘킬로미터’ 등으로 풀어쓰지 아니하고 부호 그대로 표기함을 원칙으로 합니다. 100kg, 50km 등 숫자와 단위 의존명사를 붙여 씁니다. 법원도서관뿐만 아니라 일반적으로도 통일해서 쓰는 것이 좋습니다.</TD>
-		</TR>
-		<!--관련사이트 -->
-			<TR>
-			<TD class='tdLT'>관련학습<br/>사이트</TD>
-			<TD class='tdETNor' align=center><a href="http://urimal.cs.pusan.ac.kr/urimal_new/learn/spelling/ps/main.asp" target="PnuSpellHelp">한글 맞춤법 관련</a></TD>
-		</TR>
-		<!--오류보고 -->
-		<tr id='trBugReport_2'>
-			<TD class='tdLT'>의견</TD>
-			<TD id='tdBugReport_2' class='tdETNor'>
-		</TD>
-</TR>
-</TABLE><br/>
-
-<table id='tableErr_3' class='tableErrCorrect' border='1' cellpadding='3' cellspacing='0'>
-	<!--틀린어절 -->
-	<TR>
-		<TD class='tdLT' title=3>입력 내용</TD>
-		<TD id='tdErrorWord_3' class='tdErrWord' style='color:#FF0000;' >30센티미터</TD>
-	</TR>
-	<!--대치어 -->
-	<TR>
-		<TD class='tdLT'>대치어</TD>
-		<TD id='tdReplaceWord_3' class='tdReplace' >30㎝<br/></TD>
-	</TR>
-		<!--도움말 -->
-		<TR>
-			<TD class='tdLT'>도움말</TD>
-			<TD id='tdHelp_3' class='tdETNor' helpNum='30614'><br/>수사와 단위 의존명사를 같이 쓸 때는&nbsp;&nbsp;대부분 아라비아 숫자와 영문 단위로 표기합니다. 법원도서관에서는 km, kg, %, ㎡ 등 각종 단위 부호를 나타낼 때는 ‘킬로미터’ 등으로 풀어쓰지 아니하고 부호 그대로 표기함을 원칙으로 합니다. 100kg, 50km 등 숫자와 단위 의존명사를 붙여 씁니다. 법원도서관뿐만 아니라 일반적으로도 통일해서 쓰는 것이 좋습니다.</TD>
-		</TR>
-		<!--관련사이트 -->
-			<TR>
-			<TD class='tdLT'>관련학습<br/>사이트</TD>
-			<TD class='tdETNor' align=center><a href="http://urimal.cs.pusan.ac.kr/urimal_new/learn/spelling/ps/main.asp" target="PnuSpellHelp">한글 맞춤법 관련</a></TD>
-		</TR>
-		<!--오류보고 -->
-		<tr id='trBugReport_3'>
-			<TD class='tdLT'>의견</TD>
-			<TD id='tdBugReport_3' class='tdETNor'>
-		</TD>
-</TR>
-</TABLE><br/>
-
-<table id='tableErr_4' class='tableErrCorrect' border='1' cellpadding='3' cellspacing='0'>
-	<!--틀린어절 -->
-	<TR>
-		<TD class='tdLT' title=4>입력 내용</TD>
-		<TD id='tdErrorWord_4' class='tdErrWord' style='color:#008000;' >시기면 부는</TD>
-	</TR>
-	<!--대치어 -->
-	<TR>
-		<TD class='tdLT'>대치어</TD>
-		<TD id='tdReplaceWord_4' class='tdReplace' >시기면 보는<br/></TD>
-	</TR>
-		<!--도움말 -->
-		<TR>
-			<TD class='tdLT'>도움말</TD>
-			<TD id='tdHelp_4' class='tdETNor' helpNum='23574'><br/>'보다.'가 바르지 않은지요?</TD>
-		</TR>
-		<!--관련사이트 -->
-			<TR>
-			<TD class='tdLT'>관련학습<br/>사이트</TD>
-			<TD class='tdETNor' align=center><a href="http://urimal.cs.pusan.ac.kr/urimal_new/learn/dictionary/standard/main.asp" target="PnuSpellHelp">표준어 관련</a></TD>
-		</TR>
-		<!--오류보고 -->
-		<tr id='trBugReport_4'>
-			<TD class='tdLT'>의견</TD>
-			<TD id='tdBugReport_4' class='tdETNor'>
-		</TD>
-</TR>
-</TABLE><br/>
-
-<table id='tableErr_5' class='tableErrCorrect' border='1' cellpadding='3' cellspacing='0'>
-	<!--틀린어절 -->
-	<TR>
-		<TD class='tdLT' title=5>입력 내용</TD>
-		<TD id='tdErrorWord_5' class='tdErrWord' style='color:#0000FF;' >스크로프가</TD>
-	</TR>
-	<!--대치어 -->
-	<TR>
-		<TD class='tdLT'>대치어</TD>
-		<TD id='tdReplaceWord_5' class='tdReplace' >대치어 없음</TD>
-	</TR>
-		<!--도움말 -->
-		<TR>
-			<TD class='tdLT'>도움말</TD>
-			<TD id='tdHelp_5' class='tdETNor' helpNum='0'><br/>철자 검사를 해 보니 이 어절은 분석할 수 없으므로 틀린 말로 판단하였습니다.<br/><br/>후보 어절은 이 철자검사/교정기에서 띄어쓰기, 붙여 쓰기, 음절대치와 같은 교정방법에 따라 수정한 결과입니다.<br/><br/>후보 어절 중 선택하시거나 오류 어절을 수정하여 주십시오.<br/><br/>* 단, 사전에 없는 단어이거나 사용자가 올바르다고 판단한 어절에 대해서는 통과하세요!!</TD>
-		</TR>
-		<!--관련사이트 -->
-			<TR>
-			<TD class='tdLT'>관련학습<br/>사이트</TD>
-			<TD class='tdETNor' align=center>없음</TD>
-		</TR>
-		<!--오류보고 -->
-		<tr id='trBugReport_5'>
-			<TD class='tdLT'>의견</TD>
-			<TD id='tdBugReport_5' class='tdETNor'>
-		</TD>
-</TR>
-</TABLE><br/>
-
-<table id='tableErr_6' class='tableErrCorrect' border='1' cellpadding='3' cellspacing='0'>
-	<!--틀린어절 -->
-	<TR>
-		<TD class='tdLT' title=6>입력 내용</TD>
-		<TD id='tdErrorWord_6' class='tdErrWord' style='color:#0000FF;' >이웃인서튼</TD>
-	</TR>
-	<!--대치어 -->
-	<TR>
-		<TD class='tdLT'>대치어</TD>
-		<TD id='tdReplaceWord_6' class='tdReplace' >이웃삽입은<br/></TD>
-	</TR>
-		<!--도움말 -->
-		<TR>
-			<TD class='tdLT'>도움말</TD>
-			<TD id='tdHelp_6' class='tdETNor' helpNum='8276'><br/>외래어보다는 순수 우리말이나 한자어로 된, 우리가 자주 쓰는 말을 사용합시다.</TD>
-		</TR>
-		<!--관련사이트 -->
-			<TR>
-			<TD class='tdLT'>관련학습<br/>사이트</TD>
-			<TD class='tdETNor' align=center><a href="http://urimal.cs.pusan.ac.kr/urimal_new/learn/dictionary/refine/main.asp" target="PnuSpellHelp">순화용어</a></TD>
-		</TR>
-		<!--오류보고 -->
-		<tr id='trBugReport_6'>
-			<TD class='tdLT'>의견</TD>
-			<TD id='tdBugReport_6' class='tdETNor'>
-		</TD>
-</TR>
-</TABLE><br/>
-
-<table id='tableErr_7' class='tableErrCorrect' border='1' cellpadding='3' cellspacing='0'>
-	<!--틀린어절 -->
-	<TR>
-		<TD class='tdLT' title=7>입력 내용</TD>
-		<TD id='tdErrorWord_7' class='tdErrWord' style='color:#0000FF;' >머디먼에게</TD>
-	</TR>
-	<!--대치어 -->
-	<TR>
-		<TD class='tdLT'>대치어</TD>
-		<TD id='tdReplaceWord_7' class='tdReplace' >머 악령에게<br/>머 악마에게<br/>머 귀신에게<br/>머 도깨비에게<br/></TD>
-	</TR>
-		<!--도움말 -->
-		<TR>
-			<TD class='tdLT'>도움말</TD>
-			<TD id='tdHelp_7' class='tdETNor' helpNum='8276'><br/>외래어보다는 순수 우리말이나 한자어로 된, 우리가 자주 쓰는 말을 사용합시다.</TD>
-		</TR>
-		<!--관련사이트 -->
-			<TR>
-			<TD class='tdLT'>관련학습<br/>사이트</TD>
-			<TD class='tdETNor' align=center><a href="http://urimal.cs.pusan.ac.kr/urimal_new/learn/dictionary/refine/main.asp" target="PnuSpellHelp">순화용어</a></TD>
-		</TR>
-		<!--오류보고 -->
-		<tr id='trBugReport_7'>
-			<TD class='tdLT'>의견</TD>
-			<TD id='tdBugReport_7' class='tdETNor'>
-		</TD>
-</TR>
-</TABLE><br/>
-
-<table id='tableErr_8' class='tableErrCorrect' border='1' cellpadding='3' cellspacing='0'>
-	<!--틀린어절 -->
-	<TR>
-		<TD class='tdLT' title=8>입력 내용</TD>
-		<TD id='tdErrorWord_8' class='tdErrWord' style='color:#008000;' >선 두</TD>
-	</TR>
-	<!--대치어 -->
-	<TR>
-		<TD class='tdLT'>대치어</TD>
-		<TD id='tdReplaceWord_8' class='tdReplace' >선두<br/></TD>
-	</TR>
-		<!--도움말 -->
-		<TR>
-			<TD class='tdLT'>도움말</TD>
-			<TD id='tdHelp_8' class='tdETNor' helpNum='56762'><br/>띄어 씁니다.</TD>
-		</TR>
-		<!--관련사이트 -->
-			<TR>
-			<TD class='tdLT'>관련학습<br/>사이트</TD>
-			<TD class='tdETNor' align=center><a href="http://urimal.cs.pusan.ac.kr/urimal_new/learn/spelling/ds/main.asp" target="PnuSpellHelp">어휘 결합정보 관련</a><br/><a href="http://urimal.cs.pusan.ac.kr/urimal_new/learn/spelling/ds/main.asp" target="PnuSpellHelp">합성어 결합정보</a></TD>
-		</TR>
-		<!--오류보고 -->
-		<tr id='trBugReport_8'>
-			<TD class='tdLT'>의견</TD>
-			<TD id='tdBugReport_8' class='tdETNor'>
-		</TD>
-</TR>
-</TABLE><br/>
-
-<table id='tableErr_9' class='tableErrCorrect' border='1' cellpadding='3' cellspacing='0'>
-	<!--틀린어절 -->
-	<TR>
-		<TD class='tdLT' title=9>입력 내용</TD>
-		<TD id='tdErrorWord_9' class='tdErrWord' style='color:#FF0000;' >날씨한테</TD>
-	</TR>
-	<!--대치어 -->
-	<TR>
-		<TD class='tdLT'>대치어</TD>
-		<TD id='tdReplaceWord_9' class='tdReplace' >날씨에<br/></TD>
-	</TR>
-		<!--도움말 -->
-		<TR>
-			<TD class='tdLT'>도움말</TD>
-			<TD id='tdHelp_9' class='tdETNor' helpNum='5213'><br/>'-에게'와 '-한테'는 사람과 동물 따위에 붙는 조사입니다. '-에'로 바꿔서 쓰는 것이 자연스럽습니다.</TD>
-		</TR>
-		<!--관련사이트 -->
-			<TR>
-			<TD class='tdLT'>관련학습<br/>사이트</TD>
-			<TD class='tdETNor' align=center><a href="http://urimal.cs.pusan.ac.kr/urimal_new/learn/spelling/ds/main.asp" target="PnuSpellHelp">용언과 체언의 결합</a></TD>
-		</TR>
-		<!--오류보고 -->
-		<tr id='trBugReport_9'>
-			<TD class='tdLT'>의견</TD>
-			<TD id='tdBugReport_9' class='tdETNor'>
-		</TD>
-</TR>
-</TABLE><br/>
-
-
-		</TD></TR></TABLE>
-
-		<!-- 오류 보고를 위한 post 변수값  -->
-		<input type='hidden' id='hiddenInputStr' name='hiddenInputStr' value='' />
-		<input type='hidden' id='hiddenErrorIdx' name='hiddenErrorIdx' />
-		<input type='hidden' id='hiddenErrorWord' name='hiddenErrorWord' />
-		<input type='hidden' id='hiddenReplaceWord' name='hiddenReplaceWord' />
-		<input type='hidden' id='hiddenComment' name='hiddenComment' />
-
+	<img id='imgLoading' src="./images/loadingAnimation.gif"/>
+	<iframe id='framePopup' class='noScrolling'></iframe>
+	<form name='nextInputForm' id='nextInputForm' action='./results'
+		method='post'>
+		<input type='hidden' id='text1' name='text1'
+			value="" /> <input type='hidden' id='bWeakOpt'
+			name='bWeakOpt' value="true" /> <input type='hidden'
+			id='pageIdx' name='pageIdx' value="1" />
 	</form>
-</DIV>
-
-
-	<!-- 오류 수  -->
-	<input type='hidden' id='correctionTableSize' value='10'/>
-
-	<!-- ------------------------ -->
-	<!-- 틀린 부분 밑줄 그어 출력 -->
-<div id='bufUnderline' style='display:none; width:300px; height:200px;'>그해는 겨울도 혹독하더니 봄도 느지감치 찾아와서, 오월이 다 가도록 가축에게 푸른 풀을 먹이지 못하고 있었다. 어느 목장이든 건초란 건초는 전부 동이 났고, 건초를 구해 올 수 있는 가장 가까운 곳이 하루가 꼬박 걸리는 네브래스카주 동부였는데, 그곳 사람들은 기를 쓰고 바가지를 씌워 댔다. 유월이 오기 열흘 전에는 심한 추위와 강한 눈보라를 동반한 강풍이 목초지를 휩쓸었다. 그늘진 경사면에는 눈 더미가 집채만 하게 쌓인 데다, 북극에서 찬 공기가 줄줄이 내려와 젖은 눈을 꽁꽁 얼리는 바람에 새로 태어난 송아지들을 가죽마저 <font id='ul_0' color='green' class='ul' onclick="fShowHelp('0')" >얼어붙게 만들었다</font>. 일주일 내내 유리처럼 투명한 하늘 아래 추위가 기승을 부렸고, 하얀 눈에 반사된 따가운 햇볕은 소들의 젖통을 뜨겁게 익혔다. 그러더니만 또 갑자기 치누크*의 뜨거운 바람이 불어왔고, 그러기가 무섭게 하얀 눈 세상은 일순간 안녕을 고했다. 언 땅 위로 녹은 눈이 흘러내렸다. 허물어진 눈 더미 속에서 죽은 가축의 사체가 하나둘 모습을 드러냈다. 농부들은 단발 엔진을 단 비행기를 타고 하늘을 날아다니며 아, 보인다, 안 보인다를 반복하는 괴로운 머릿수 세기를 해야 했다. <font id='ul_1' color='blue' class='ul' onclick="fShowHelp('1')" >스크로프의</font> 가축우리 주변도 범람하여 <font id='ul_2' color='red' class='ul' onclick="fShowHelp('2')" >1킬로미터</font> 구간도 넘는 고속도로가 물에 잠겨 버렸고, 그동안 그의 우편물은 우체국에서 보관해야 했다. 그런데 그 물이 빠지기도 전에, 또 다른 폭풍우가 서쪽으로부터 몰아닥치며 완두콩만 한 우박을 땅 위에 우두둑 쏟아부었다. 쏟아지며 사방으로 솟구치던 그 얼음 덩어리는 폭우로 탈바꿈했다가, 다시금 우박으로 바뀌었다가, 최종적으로 결이 거친 눈송이로 변해 땅 위에 <font id='ul_3' color='red' class='ul' onclick="fShowHelp('3')" >30센티미터</font> 정도 쌓였다. 이틀 후에는 그 <font id='ul_4' color='green' class='ul' onclick="fShowHelp('4')" >시기면 부는</font> 첫 번째 토네이도가 곡물 창고를 몇 채나 날려 버렸다.
-<br>
-<br>* 북아메리카 로키산맥 동쪽에서 부는 건조한 열풍.
-<br>
-<br>“내 살다 살다 이렇게 망할 날씨가 2주 사이에 한꺼번에 몰려오는 건 또 처음 보네.”
-<br><font id='ul_5' color='blue' class='ul' onclick="fShowHelp('5')" >스크로프가</font> <font id='ul_6' color='blue' class='ul' onclick="fShowHelp('6')" >이웃인 서튼</font> <font id='ul_7' color='blue' class='ul' onclick="fShowHelp('7')" >머디먼에게</font> 말했다. 진흙이 덕지덕지 묻은 픽업트럭 두 대가 배기관을 탈탈거리며 엉망이 된 땅 위에 일렬횡대로 서 있었다. 나란히 <font id='ul_8' color='green' class='ul' onclick="fShowHelp('8')" >선 두</font> 트럭의 짐칸에 탄 개들이 서로에게 이를 드러내고 으르렁대며 이리저리 날뛰었다.
-<br>“<font id='ul_9' color='red' class='ul' onclick="fShowHelp('9')" >날씨한테</font> 제대로 한 방 먹었지 뭐야. 그런데 더 걱정되는 건, 아직도 눈 덮인 곳이 많다는 거야. 산 위에 눈 더미가 가득 쌓인 거, 그게 녹기 시작하면 그땐 정말 콸콸 쏟아져 내릴 거라고.</div>
-
-
-	<!-- 페이지 번호 -->
-	<input type='hidden' id='pageNumber' value='1'/>
-
-	<!-- --------------------------- -->
-	<!--오류 보고를 위한 post 변수값 -->
-	<input type='hidden' id='bufHiddenInputStr' name='bufHiddenInputStr' value="그해는 겨울도 혹독하더니 봄도 느지감치 찾아와서, 오월이 다 가도록 가축에게 푸른 풀을 먹이지 못하고 있었다. 어느 목장이든 건초란 건초는 전부 동이 났고, 건초를 구해 올 수 있는 가장 가까운 곳이 하루가 꼬박 걸리는 네브래스카주 동부였는데, 그곳 사람들은 기를 쓰고 바가지를 씌워 댔다. 유월이 오기 열흘 전에는 심한 추위와 강한 눈보라를 동반한 강풍이 목초지를 휩쓸었다. 그늘진 경사면에는 눈 더미가 집채만 하게 쌓인 데다, 북극에서 찬 공기가 줄줄이 내려와 젖은 눈을 꽁꽁 얼리는 바람에 새로 태어난 송아지들을 가죽마저 얼어붙게 만들었다. 일주일 내내 유리처럼 투명한 하늘 아래 추위가 기승을 부렸고, 하얀 눈에 반사된 따가운 햇볕은 소들의 젖통을 뜨겁게 익혔다. 그러더니만 또 갑자기 치누크*의 뜨거운 바람이 불어왔고, 그러기가 무섭게 하얀 눈 세상은 일순간 안녕을 고했다. 언 땅 위로 녹은 눈이 흘러내렸다. 허물어진 눈 더미 속에서 죽은 가축의 사체가 하나둘 모습을 드러냈다. 농부들은 단발 엔진을 단 비행기를 타고 하늘을 날아다니며 아, 보인다, 안 보인다를 반복하는 괴로운 머릿수 세기를 해야 했다. 스크로프의 가축우리 주변도 범람하여 1킬로미터 구간도 넘는 고속도로가 물에 잠겨 버렸고, 그동안 그의 우편물은 우체국에서 보관해야 했다. 그런데 그 물이 빠지기도 전에, 또 다른 폭풍우가 서쪽으로부터 몰아닥치며 완두콩만 한 우박을 땅 위에 우두둑 쏟아부었다. 쏟아지며 사방으로 솟구치던 그 얼음 덩어리는 폭우로 탈바꿈했다가, 다시금 우박으로 바뀌었다가, 최종적으로 결이 거친 눈송이로 변해 땅 위에 30센티미터 정도 쌓였다. 이틀 후에는 그 시기면 부는 첫 번째 토네이도가 곡물 창고를 몇 채나 날려 버렸다.
-
-* 북아메리카 로키산맥 동쪽에서 부는 건조한 열풍.
-
-“내 살다 살다 이렇게 망할 날씨가 2주 사이에 한꺼번에 몰려오는 건 또 처음 보네.”
-스크로프가 이웃인 서튼 머디먼에게 말했다. 진흙이 덕지덕지 묻은 픽업트럭 두 대가 배기관을 탈탈거리며 엉망이 된 땅 위에 일렬횡대로 서 있었다. 나란히 선 두 트럭의 짐칸에 탄 개들이 서로에게 이를 드러내고 으르렁대며 이리저리 날뛰었다.
-“날씨한테 제대로 한 방 먹었지 뭐야. 그런데 더 걱정되는 건, 아직도 눈 덮인 곳이 많다는 거야. 산 위에 눈 더미가 가득 쌓인 거, 그게 녹기 시작하면 그땐 정말 콸콸 쏟아져 내릴 거라고."/>
-
-
-	<!-- --------------- -->
-	<!--다음 검사할 내용 -->
-	<input type='hidden' id='bufText2' name='bufText2' value=" 그런데 자네, 그 소고기 먹으라는 광고가 돈 좀 벌어다 줬나?”
-머디먼이 물었다.
-“그 광고판 볼 수 있는 사람이라고 해 봐야 픽잇업 주민들밖에 없는데, 거기 사는 사람들이 두어 명밖에 더 되나, 어디? 차들이 좀 다니는 큰 고속도로 위에 광고를 내야 했는데.”
-그는 목에 움푹 들어간 뾰루지를 긁으며 말했다. 양쪽 뺨에 짧게 깎은 금발 수염이 번쩍였다.
-“제기랄, 요즘 이 업종 사람들은 이렇게 개고생인데, 자네는 이 일에서 발 빼길 정말 잘했지 뭐야.”
-“카, 절대로 내가 거저 먹고산다고 생각지 말게. 나도 매일매일 복장 터지는 일이 얼마나 많은 줄 아나? 그나저나, 나 이제 가 봐야겠네. 이네즈에게 가져다줄 아이스크림이 봉지에서 녹고 있어.”
-머디먼이 말했다.
-“그래, 빨리 집에 가 보게, 서튼.”
-스크로프가 철 테두리만 남은 액셀을 발로 살그미 밟으며 말했다. 페달의 고무 커버는 없어진 지 이미 몇 개월째였다. 머디먼도 작은 돌멩이가 빽빽이 박힌 차바퀴를 굴리며 남쪽으로 나아갔다.
-마흔 살이 된 스크로프는 일평생 커피포트에서 살아 왔고, 사료를 사기 위해 조금 멀리 떨어진 시그널에만 가도 향수에 시달렸다. 목장을 향한 그의 병적인 열정은 옛날, 어린 시절부터 시작된 것이었다. 당시 그는 풀들이 자신을 놀려 대는 소리를 들을 수 있다고 믿었다. 그 능력은 트레인 형이 세상을 떠난 해에 처음 생겨났는데, 형은 욕실에서 끔직하고 개인적인 방식으로 죽어 있었고, 그 광경은 그의 엄마가 처음 목격했다. 사실, 그때 그는 무슨 일이 일어난 건지 전혀 몰랐고 지금도 잘 모르기는 마찬가지였다. 부모님은 그에게 아무 말도 안 해 주고 그저 눈물을 훔치며 서로 쉬쉬하기 바빴고, 때문에 그는 무슨 일이 어떻게 돌아가는지, 그리고 그 후로 무슨 일이 일어날지 전혀 몰랐다. 졸졸 물 새는 소리 같은 낮은 목소리가 부엌에서 들려 가까이 다가가면, 삐걱거리는 그의 부츠 소리에 맞추어 그들은 약속이라도 한 듯 즉각 입을 다물었다. 형의 이름은 입에도 올리지 말 것, 그가 아는 것은 그게 다였다. 그 후에도 부모는 그 이야기만 나오면, 잡초 이름이라든가, 접시에 담긴 버터의 신선도라든가, 목장주의 자식으로서 학교 교육을 얼마나 받아야 적당하다든가 따위의 시답잖은 이야기로 화제를 돌리며 그 주제를 회피했다. (그때만 해도 학교 교육은 별로 필요 없다는 식으로 말하던 그의 아버지는 몇 년이 흐른 후에 카가 은행가나 보험 판매원이 되지 못한 것이 불만이라는 식으로 말했다.) 아버지의 장례식 후, 그는 어머니에게 대놓고 물었다.
-“엄마, 아버지와 늘 둘이서만 하던 얘기는 도대체 뭐였어요? 트레인 형에 대한 거였어요? 아무튼 형한테 무슨 일이 일어났던 거죠?”
-그러면 어머니는 말없이 고개를 돌리고 창문 바깥만 물끄러미 쳐다보았는데, 그 시선은 저 멀리 붉은 바위기둥과 그 너머 잔뜩 찌푸린 하늘에 닿아 있었고, 아무런 말도 없었다.
-반면, 풀들은 절대 입을 다무는 법이 없었다. 풀들은 땅딸막한 존 렌치가 영화관에서 웃는 것 같은 소리를 냈다. 고등학교 시절 존 렌치는 영화관 맨 마지막 줄에 앉아 팝콘 상자 바닥을 뚫어 기름으로 미끌미끌한 옥수수 알 사이에 음경을 밀어 넣고는 옆에 앉은 여자애에게 자기 팝콘을 먹으라고 권했다. 스크로프의 전부인 제리도 그 팝콘을 먹은 적이 있었다. 좋은 놈은 가고 최악의 놈만 남네, 하고 풀들은 쉭쉭거렸다.
-커피포트는 작지만 짜임새가 있는 목장이었는데, 다양한 가축이 고르게 잘 섞여 있는 여덟 구역과 (불충분하지만) 관개수가 흐르는 목초지, 토지관리국 소유지로 나가 목축할 수 있는 권리도 가지고 있었다. 목장 근처에 흐르는 배드걸크리크 시내는 물을 공급해 주었고, 지대가 낮아 진창으로 변한 땅은 비버들이 찾아와 세 개의 작은 연못으로 업그레이드시켜 주었다. 큰 도로에서 끌어온, 전선이 한 줄밖에 걸리지 않은 전봇대들이 일렬로 늘어선 목장 입구로 들어가는 비포장도로에는 저 멀리 목장 구석구석까지 뻗어 가는 수많은 곁가지들이 걸려 있었다. 목장 사택에서 70미터 정도 떨어진 콘크리트 블록 위에는 미루나무 그늘 밑으로 프리즈 부인이 사는 트레일러 주택이 세워 져 있었다. 가축 울타리와 담장을 지나면 완만한 경사가 나타났고, 그 언덕 꼭대기에 스크로프가 지은 외양간은 송아지를 낳을 때 쓰는 곳이었다.
-제2차 세계 대전 후에 스크로프의 아버지가 지은 목장 사택은 처음 지은 통나무집 그대로 변한 데 하나 없이 서 있었다. 파이프에 검은 불순물이 가득 껴서 문제가 끊이지 않는 배수 시설이며, 제리의 꽃무늬 치마에 얼룩을 입힌 현관 앞의 녹슨 그네며, 그 아버지의 아들이 새롭게 손본 곳은 단 한 곳도 없었다. 개집이라고 해도 믿을 만한 현관 입구는 부엌으로 곧장 이어져 있었고, 탁자 위에 걸려 있는 사진은 1911년에 찍어서 걸어 둔 상태 그대로 있었다. 그 사진에는 수척한 얼굴을 한 스크로프의 조상들이 대피용 참호 앞에서 씩 웃고 있는 모습이 발치에 비친 사진사의 그림자와 함께 찍혀 있었는데, 그렇게 걸려 있은 지가 너무도 오래되어 더 이상 스크로프의 눈에 보이지 않게 되었다. 늘 있지만 느끼지 못하는, 마치 산소나 한낮의 햇빛과도 같이. 그러나 아마도 그게 없어지면 그는 단박에 알아챌 것이다.
-목장의 남동쪽 구석에는 풀도 나지 않는 앙상한 땅이 높게 솟아 있었다. 그곳에서는 살쾡이 한 쌍과 방울뱀 몇 마리가 살았고, 주목할 만한 특징을 꼽자면 거대한 침식 흔적과 거센 비에 씻겨 드러난 화석으로 층층이 주름 잡힌 붉은 바위기둥이 높이 솟아 있었다. 한번은 소년원에서 탈출해 곤경에 처한 한 남자아이가 일주일간 그 돌출된 바위 밑에 숨은 적이 있었다. 카 스크로프는 개 밥그릇에 있던 소기름과 탄 당근을 훔쳐 가려던 그 아이를 붙잡아 집 안으로 불러들였다. 그는 아이의 이름이 베니 혼이라는 것을 알아내고, 아이에게 콩 요리를 먹인 후 디저트로 초콜릿 바를 슬쩍 건네주었고, 아이의 목에 난 점을 가리키면서 자수하는 게 어떻겠느냐고 설득했다. 그리고 그가 소년원에서 나오면, 최저임금보다 낮지만 시간제로 일손이 모자라는 계절에 일자리를 주겠다고까지 약속했다.
-“난 너희 아버지도 잘 알았어.”
-"/>
+</body>
+</html>

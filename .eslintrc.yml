@@ -1,0 +1,15 @@
+env:
+  browser: true
+  commonjs: true
+  es2021: true
+  mocha: true
+extends:
+  - eslint:recommended
+  - airbnb-base
+  - plugin:prettier/recommended
+parserOptions:
+  ecmaVersion: 12
+rules:
+  max-len: ["error", {"code": 80, "ignoreUrls": true}]
+  prettier/prettier: "error"
+  no-console: "off"
