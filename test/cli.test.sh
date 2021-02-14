@@ -25,3 +25,5 @@ cat test/cli.test.in | lib/cli.js -a 2> $err > $out
 diff $out test/cli.test.out.all
 diff $err test/cli.test.err.all
 echo -e "\033[1;32m Ok \033[0m"
+
+rm $out $err
