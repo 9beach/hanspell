@@ -28,6 +28,9 @@ $ hanspell-cli -h
   -p, --pnu               부산대학교 서비스를 이용해서 맞춤법을 교정합니다
   -a, --all 		  두 서비스의 모든 결과를 반영해서 맞춤법을 교정합니다
   -h, --info              도움말을 출력합니다
+
+버그 리포트와 제안: <https://github.com/9beach/hanspell/issues>
+한스펠 홈 페이지: <https://github.com/9beach/hanspell/>
 ```
 
 문장을 직접 입력하거나 클립보드에서 복사해서 맞춤법을 교정할 수 있습니다. 다음은
