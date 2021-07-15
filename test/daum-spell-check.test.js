@@ -32,12 +32,9 @@ describe('spellCheckByDAUM', () => {
     const sentence = '한바퀴 돌껀데 말했더만';
     const timeout = 4000;
     const check = (data) => {
-      assert.notEqual(data[0].info.indexOf('수사 또는 수관형사와'), -1);
-      assert.notEqual(data[0].info.indexOf('다섯 마리'), -1);
-      assert.notEqual(data[1].info.indexOf('잘못된 표기로 의존명사'), -1);
-      assert.notEqual(data[1].info.indexOf('그 일은 내가'), -1);
-      assert.notEqual(data[2].info.indexOf('잘못된 어미입니다'), -1);
-      assert.notEqual(data[2].info.indexOf('잤더니만'), -1);
+      assert.notEqual(data[0].suggestions.indexOf('한 바퀴'), -1);
+      assert.notEqual(data[1].suggestions.indexOf('돌 건데'), -1);
+      assert.notEqual(data[2].suggestions.indexOf('말했더니만'), -1);
     };
     spellCheck(sentence, timeout, check, done, never);
   });
