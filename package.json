@@ -1,6 +1,6 @@
 {
   "name": "hanspell",
-  "version": "0.8.5",
+  "version": "0.8.6",
   "description": "(주)다음과 부산대학교 인공지능연구실/(주)나라인포테크의 온라인 서비스를 이용한 한글 맞춤법 검사기.",
   "homepage": "https://github.com/9beach/hanspell",
   "author": {
