@@ -48,7 +48,7 @@ $ hanspell-cli
 ...</font>
 </pre>
 
-![스크린샷](./hanspell-screenshot.png?raw=true "한스펠 스크린샷")
+![스크린샷](https://raw.githubusercontent.com/9beach/hanspell/master/hanspell-screenshot.png "한스펠 스크린샷")
 
 파일의 맞춤법을 교정하려면 다음과 같이 명령합니다.
 ```
