@@ -132,7 +132,6 @@ hanspell.spellCheckByPNU(sentence, 6000, console.log, end, error);
     token: '굵은게,',
     suggestions: [ '굵은 게,' ],
     context: '얼굴 골격이 굵은게,',
-    info: '뒤에 오는 명사를 수식하는 관형격 어미 ‘-ㄴ’, ‘-는’ ......'
   }
 ]
 // check ends
@@ -150,8 +149,8 @@ hanspell.spellCheckByPNU(sentence, 6000, console.log, end, error);
 ]
 // check ends
 ```
-두 함수의 호출 결과는 모두 `token`, `suggestions`, `info` 속성을 가집니다.
-`spellCheckByDAUM`의 결과는 `type`, `context` 속성을 추가로 가집니다. 
+두 함수의 호출 결과는 모두 `token`, `suggestions` 속성을 가집니다.
+`spellCheckByDAUM`의 결과는 `type`, `context` 속성을, `spellCheckByPNU`의 결과는 `info` 속성을 추가로 가집니다. 
 
 위의 예시에서 `sentence`가 300 단어 또는 1000자를 넘으면, 인자로 전달된
 `console.log`는 여러 번 호출되지만 `end`는 항상 마지막에 한 번만 호출됩니다.
