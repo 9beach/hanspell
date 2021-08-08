@@ -6,6 +6,14 @@ const never = () => {
 };
 
 describe('spellCheckByPNU', () => {
+  it('should fetch 0 data', (done) => {
+    const sentence = '';
+    const timeout = 4000;
+    const check = (data) => {
+      assert.equal(data.length, 0);
+    };
+    spellCheck(sentence, timeout, check, done, never);
+  });
   it('should fetch 4 data', (done) => {
     const sentence = `여름 저녁이 푸르를 때\t난 가리라
 보리 무성한 사이\t\t\t가느다란 풀 짓밟힌 샛길 속으로.
