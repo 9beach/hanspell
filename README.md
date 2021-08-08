@@ -160,27 +160,28 @@ hanspell.spellCheckByPNU(sentence, 6000, console.log, end, error);
 
 다음의 결과가 예상됩니다.
 
-```javascript
+```console
 [
   {
     type: 'space',
     token: '굵은게,',
-    suggestions: ['굵은 게,'],
-    context: '얼굴 골격이 굵은게,',
-  },
-][
-  // check ends
-  ({
+    suggestions: [ '굵은 게,' ],
+    context: '얼굴 골격이 굵은게,'
+  }
+]
+// check ends
+[
+  {
     token: '리랜드는',
-    suggestions: ['이랜드는'],
-    info: '철자 검사를 해 보니 이 어절은 분석할 수 없으므로 ......',
+    suggestions: [ '이랜드는' ],
+    info: '철자 검사를 해 보니 이 어절은 분석할 수 없으므로...'
   },
   {
     token: '굵은게',
-    suggestions: ['굵은 게', '굵은데'],
-    info: '어미의 사용이 잘못되었습니다. 문서 작성시 필요에 ......',
-  })
-];
+    suggestions: [ '굵은 게', '굵은데' ],
+    info: '어미의 사용이 잘못되었습니다. 문서 작성시 필요에...'
+  }
+]
 // check ends
 ```
 
