@@ -53,7 +53,7 @@ $ hanspell-cli
 ...</font>
 </pre>
 
-![스크린샷](https://raw.githubusercontent.com/9beach/hanspell/master/hanspell-screenshot.png '한스펠 스크린샷')
+![스크린숏](https://raw.githubusercontent.com/9beach/hanspell/master/hanspell-screenshot.png '한스펠 스크린숏')
 
 파일의 맞춤법을 교정하려면 다음과 같이 명령합니다.
 
@@ -76,7 +76,7 @@ $ cat your-text | hanspell-cli 2> /dev/null
 cat your-text | hanspell-cli 2>&1 > /dev/null | grep '->'
 ```
 
-클립보드에 복사된 문장을 교정하려면, 맥OS 사용자는 `pbpaste`,
+클립보드에 복사된 문장을 교정하려면, macOS 사용자는 `pbpaste`,
 X 윈도 시스템 사용자는 `xclip -o`, 마이크로소프트 윈도우 사용자는
 `powershell.exe Get-Clipboard` 명령을 이용할 수 있습니다.
 
@@ -86,7 +86,7 @@ pbpaste | hanspell-cli
 
 `~/.hanspell-ignore` 파일에 교정 대상에서 제외할 문자열을
 [글로브 패턴](<https://ko.wikipedia.org/wiki/글로브_(프로그래밍)>)으로 지정할 수
-있습니다. "그로떼스끄"로 시작하는 문자열과 "빠이"를 교정 대상에서 제외하려면
+있습니다. ‘그로떼스끄’로 시작하는 문자열과 ‘빠이’를 교정 대상에서 제외하려면
 다음과 같이 설정하세요.
 
 ```txt
@@ -105,7 +105,7 @@ pbpaste | hanspell-cli
 ...
 ```
 
-리눅스나 맥 OS 환경이라면 간단한 셸 스크립트로 자주 틀리는 순으로 정렬할 수 있습니다.
+아래는 사용자가 자주 틀리는 맞춤법을 빈도순으로 보여주는 셸 스크립트입니다. 리눅스나 macOS 환경에서만 작동합니다.
 
 ```console
 $ sort < ~/.hanspell-history | uniq -c | sort -nr | head
@@ -139,8 +139,7 @@ Node.js 프로젝트에서 `hanspell` 라이브러리를 사용하려면 먼저 
 cd my-project && npm install --save hanspell
 ```
 
-`hanspell` 라이브러리는 `spellCheckByDAUM`과 `spellCheckByPNU`, 두 개의
-함수를 제공합니다. 다음은 사용 예입니다.
+`hanspell` 라이브러리에는 `spellCheckByDAUM`와 `spellCheckByPNU`, 함수 두 개가 있습니다. 다음은 사용 예입니다.
 
 ```javascript
 // hanspell-example.js
@@ -186,7 +185,7 @@ hanspell.spellCheckByPNU(sentence, 6000, console.log, end, error);
 ```
 
 두 함수의 호출 결과는 모두 `token`, `suggestions` 속성을 가집니다.
-`spellCheckByDAUM`의 결과는 `type`, `context` 속성을, `spellCheckByPNU`의 결과는 `info` 속성을 추가로 가집니다.
+`spellCheckByDAUM`은 `type`, `context` 속성을, `spellCheckByPNU`는 `info` 속성을 추가로 가집니다.
 
 위의 예시에서 `sentence`가 300 단어 또는 1000자를 넘으면, 인자로 전달된
-`console.log`는 여러 번 호출되지만 `end`는 항상 마지막에 한 번만 호출됩니다.
+`console.log`는 여러 번 호출되지만 `end`는 마지막에 한 번만 호출됩니다.
