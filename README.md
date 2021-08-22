@@ -139,7 +139,7 @@ Node.js 프로젝트에서 `hanspell` 라이브러리를 사용하려면 먼저 
 cd my-project && npm install --save hanspell
 ```
 
-`hanspell` 라이브러리에는 `spellCheckByDAUM`와 `spellCheckByPNU`, 함수 두 개가 있습니다. 다음은 사용 예입니다.
+`hanspell` 라이브러리에는 `spellCheckByDAUM` 함수와 `spellCheckByPNU` 함수가 있습니다. 다음은 사용 예입니다.
 
 ```javascript
 // hanspell-example.js
