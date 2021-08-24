@@ -8,17 +8,16 @@
 
 ## 설치
 
-먼저 [Node.js](https://nodejs.org/ko/)를 설치한 뒤, 다음을 실행하면 `hanspell`을
-설치합니다.
-
-```sh
-sudo npm install -g hanspell
-```
-
-설치 환경에 따라 `sudo` 명령어를 빼야 할 수 있습니다.
+[Node.js](https://nodejs.org/ko/)를 설치한 뒤, 다음을 실행하면 `hanspell`을 설치합니다.
 
 ```sh
 npm install -g hanspell
+```
+
+Node.js 환경에 따라 `sudo` 명령이 필요할 수도 있습니다..
+
+```sh
+sudo npm install -g hanspell
 ```
 
 ## 명령어 사용법
@@ -108,17 +107,12 @@ pbpaste | hanspell-cli
 아래는 사용자가 자주 틀리는 맞춤법을 빈도순으로 보여주는 셸 스크립트입니다. 리눅스나 macOS 환경에서만 작동합니다.
 
 ```console
-$ sort < ~/.hanspell-history | uniq -c | sort -nr | head
+$ sort < ~/.hanspell-history | uniq -c | sort -nr | head -n 5
   17 모래속에 -> 모래 속에
-  13 곤색이다 -> 감색이다
-  13 곤색의 -> 감색의
+  13 그 뿐만 -> 그뿐만
+  13 했는 지 -> 했는지
   13 한바퀴 -> 한 바퀴
-  13 돌껀데 -> 돌 건데
-  10 리랜드는 -> 이랜드는
-   9 말했더만 -> 말했더구먼
-   7 주름투성이 -> 주름 투성이
-   7 암소여서도 -> 암소 여서도
-   7 열두살 -> 열두 살
+   7 내노라하는 -> 내로라하는
 ```
 
 ## 마이크로소프트 윈도우 환경
@@ -133,7 +127,7 @@ type your-text.utf-8 | hanspell-cli
 
 ## 라이브러리 사용법
 
-Node.js 프로젝트에서 `hanspell` 라이브러리를 사용하려면 먼저 다음을 실행하세요.
+Node.js 프로젝트에서 `hanspell` 라이브러리를 사용하려면 다음을 실행하세요.
 
 ```bash
 cd my-project && npm install --save hanspell
