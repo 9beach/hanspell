@@ -36,16 +36,6 @@ describe('spellCheckByDAUM', () => {
     };
     spellCheck(sentence, timeout, check, done, never);
   });
-  it('should fetch 3 data', (done) => {
-    const sentence = '한바퀴 돌껀데 말했더만';
-    const timeout = 4000;
-    const check = (data) => {
-      assert.notEqual(data[0].suggestions.indexOf('한 바퀴'), -1);
-      assert.notEqual(data[1].suggestions.indexOf('돌 건데'), -1);
-      assert.notEqual(data[2].suggestions.indexOf('말했더니만'), -1);
-    };
-    spellCheck(sentence, timeout, check, done, never);
-  });
   it('should call check function more than once', (done) => {
     const sentence = '한바퀴 돌껀데 말했더만\n'.repeat(200);
     const timeout = 40000;
