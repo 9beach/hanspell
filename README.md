@@ -14,7 +14,7 @@
 npm install -g hanspell
 ```
 
-Node.js 환경에 따라 `sudo` 명령이 필요할 수도 있습니다..
+Node.js 환경에 따라 `sudo` 명령이 필요할 수도 있습니다.
 
 ```sh
 sudo npm install -g hanspell
