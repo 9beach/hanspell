@@ -8,7 +8,7 @@
 
 ## 설치
 
-[한스펠 릴리스](https://github.com/9beach/hanspell/releases)에서 실행가능한 파일을 다운로드 하세요.
+[한스펠 릴리스](https://github.com/9beach/hanspell/releases)에서 실행파일을 다운로드 하세요.
 
 소스를 받아서 설치하려면 [Node.js](https://nodejs.org/ko/)를 설치한 뒤 다음을 실행하세요.
 
