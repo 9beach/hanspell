@@ -4,11 +4,13 @@
 
 [비주얼 스튜디오 코드 한스펠](https://github.com/9beach/vscode-hanspell)과 [하스켈](https://www.haskell.org/)로 작성한 [hanspell-hs](https://github.com/9beach/hanspell-hs)도 있으니 참고하세요.
 
-[![Build Status](https://travis-ci.org/9beach/hanspell.svg?branch=master)](https://travis-ci.org/9beach/hanspell) [![npm version](https://badge.fury.io/js/hanspell.svg)](https://badge.fury.io/js/hanspell)
+[![npm version](https://badge.fury.io/js/hanspell.svg)](https://badge.fury.io/js/hanspell)
 
 ## 설치
 
-[Node.js](https://nodejs.org/ko/)를 설치한 뒤, 다음을 실행하면 `hanspell`을 설치합니다.
+[한스펠 릴리스](https://github.com/9beach/hanspell/releases)에서 실행가능한 파일을 다운로드 하세요.
+
+소스를 받아서 설치하려면 [Node.js](https://nodejs.org/ko/)를 설치한 뒤 다음을 실행하세요.
 
 ```sh
 npm install -g hanspell
