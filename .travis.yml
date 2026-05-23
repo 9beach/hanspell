@@ -1,6 +1,0 @@
-language: node_js
-node_js:
-  - 15
-  - 10
-before_script:
-  - npm run lint
