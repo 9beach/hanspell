@@ -183,6 +183,21 @@ hanspell.spellCheckByNAVER(sentence, 6000, console.log, end, error);
 두 함수의 호출 결과는 모두 `token`, `suggestions`, `info` 속성을 가집니다.
 `spellCheckByDAUM`은 `type`, `context` 속성을 추가로 가집니다.
 
+TypeScript 사용자는 별도 설정 없이 타입이 자동으로 인식됩니다.
+
+```typescript
+import { spellCheckByNAVER, NaverTypo } from 'hanspell';
+
+spellCheckByNAVER(
+  '안뇽하세요.',
+  6000,
+  (data: NaverTypo[]) => console.log(data),
+  () => console.log('// check ends'),
+  (err) => console.error(err),
+);
+```
+
+
 네이버 검사기는 부산대 검사기와 달리 교정 후보를 항상 하나만 제공하고, `info`는
 오류 분류(맞춤법/띄어쓰기/표준어 추천)만 알려 줍니다.
 

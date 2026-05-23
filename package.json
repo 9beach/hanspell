@@ -16,6 +16,7 @@
   },
   "license": "MIT",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "all": "npm run lint && npm test",
     "test": "mocha && test/cli.test.sh",
