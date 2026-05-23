@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   release:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
 
@@ -27,6 +27,11 @@ jobs:
 
       - name: Build binaries
         run: npx --yes @yao-pkg/pkg . --out-path bin
+
+      - name: Ad-hoc sign macOS arm64 binary
+        # Apple Silicon은 unsigned arm64 Mach-O를 커널이 즉시 죽이기 때문에
+        # 최소한의 ad-hoc 서명을 입혀야 실행 가능합니다.
+        run: codesign --sign - --force bin/hanspell-macos-arm64
 
       - name: Package zips
         working-directory: bin
