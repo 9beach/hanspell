@@ -14,10 +14,10 @@ diff $out test/cli.test.out.daum
 diff $err test/cli.test.err.daum
 echo -e "\033[1;32m Ok \033[0m"
 
-echo -n Tests hanspell-cli with option --pnu.
-cat test/cli.test.in | lib/cli.js -p 2> $err > $out
-diff $out test/cli.test.out.pnu
-diff $err test/cli.test.err.pnu
+echo -n Tests hanspell-cli with option --naver.
+cat test/cli.test.in | lib/cli.js -n 2> $err > $out
+diff $out test/cli.test.out.naver
+diff $err test/cli.test.err.naver
 echo -e "\033[1;32m Ok \033[0m"
 
 echo -n Tests hanspell-cli with option --all.
