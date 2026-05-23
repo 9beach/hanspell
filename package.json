@@ -1,6 +1,6 @@
 {
   "name": "hanspell",
-  "version": "0.10.0",
+  "version": "1.0.0",
   "description": "(주)다음과 네이버(주)의 온라인 서비스를 이용한 한글 맞춤법 검사기.",
   "homepage": "https://github.com/9beach/hanspell",
   "author": {
@@ -23,7 +23,20 @@
   "scripts": {
     "all": "npm run lint && npm test",
     "test": "mocha && test/cli.test.sh",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "build": "pkg . --out-path bin"
+  },
+  "pkg": {
+    "scripts": [
+      "lib/**/*.js"
+    ],
+    "targets": [
+      "node20-linux-x64",
+      "node20-macos-arm64",
+      "node20-macos-x64",
+      "node20-win-x64"
+    ],
+    "outputPath": "bin"
   },
   "preferGlobal": true,
   "bin": {

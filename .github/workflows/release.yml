@@ -1,0 +1,59 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Resolve version
+        id: meta
+        run: echo "version=${GITHUB_REF_NAME#v}" >> "$GITHUB_OUTPUT"
+
+      - name: Build binaries
+        run: npx --yes @yao-pkg/pkg . --out-path bin
+
+      - name: Package zips
+        working-directory: bin
+        env:
+          V: ${{ steps.meta.outputs.version }}
+        run: |
+          set -euo pipefail
+          rename_and_zip() {
+            local src=$1 target=$2 ext=${3:-}
+            mv "$src" "hanspell${ext}"
+            zip "hanspell-${V}-${target}${ext}.zip" "hanspell${ext}"
+            rm "hanspell${ext}"
+          }
+          rename_and_zip hanspell-linux-x64    linux-x64
+          rename_and_zip hanspell-macos-arm64  macos-arm64
+          rename_and_zip hanspell-macos-x64    macos-x64
+          rename_and_zip hanspell-win-x64.exe  win-x64 .exe
+
+      - name: Create GitHub Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          V: ${{ steps.meta.outputs.version }}
+        run: |
+          gh release create "${GITHUB_REF_NAME}" \
+            --title "한스펠 ${GITHUB_REF_NAME}" \
+            --notes "윈도우, 맥, 리눅스에서 각각 실행되는 바이너리 파일입니다. [@yao-pkg/pkg](https://github.com/yao-pkg/pkg)로 만들었습니다." \
+            "bin/hanspell-${V}-linux-x64.zip" \
+            "bin/hanspell-${V}-macos-arm64.zip" \
+            "bin/hanspell-${V}-macos-x64.zip" \
+            "bin/hanspell-${V}-win-x64.exe.zip"
