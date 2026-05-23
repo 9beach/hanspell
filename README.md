@@ -10,6 +10,14 @@
 
 [한스펠 릴리스](https://github.com/9beach/hanspell/releases)에서 실행파일을 다운로드 하세요.
 
+macOS에서는 다운로드한 실행 파일에 검역(quarantine) 속성이 붙어 "확인되지
+않은 개발자" 경고가 뜹니다. 다음 명령으로 한 번만 속성을 지우면 이후
+경고 없이 실행됩니다.
+
+```sh
+xattr -d com.apple.quarantine ./hanspell
+```
+
 소스를 받아서 설치하려면 [Node.js](https://nodejs.org/ko/) 18 이상을 설치한 뒤 다음을 실행하세요.
 
 ```sh
