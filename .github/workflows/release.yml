@@ -28,10 +28,66 @@ jobs:
       - name: Build binaries
         run: npx --yes @yao-pkg/pkg . --out-path bin
 
-      - name: Ad-hoc sign macOS arm64 binary
-        # Apple Silicon은 unsigned arm64 Mach-O를 커널이 즉시 죽이기 때문에
-        # 최소한의 ad-hoc 서명을 입혀야 실행 가능합니다.
-        run: codesign --sign - --force bin/hanspell-macos-arm64
+      - name: Import Developer ID certificate
+        # 시크릿이 비어 있으면 ad-hoc 서명으로 폴백 (포크/PR에서도 빌드만 가능하도록).
+        env:
+          DEV_ID_CERT_BASE64:  ${{ secrets.DEV_ID_CERT_BASE64 }}
+          DEV_ID_CERT_PASSWORD: ${{ secrets.DEV_ID_CERT_PASSWORD }}
+          KEYCHAIN_PASSWORD:   ${{ secrets.KEYCHAIN_PASSWORD }}
+        run: |
+          set -e
+          if [ -z "$DEV_ID_CERT_BASE64" ]; then
+            echo "developer_id_available=false" >> "$GITHUB_ENV"
+            echo "Developer ID cert secret 없음. ad-hoc 서명으로 폴백."
+            exit 0
+          fi
+          echo "$DEV_ID_CERT_BASE64" | base64 -d > /tmp/cert.p12
+          security create-keychain -p "$KEYCHAIN_PASSWORD" build.keychain
+          security set-keychain-settings -lut 21600 build.keychain
+          security unlock-keychain -p "$KEYCHAIN_PASSWORD" build.keychain
+          security list-keychains -d user -s build.keychain login.keychain
+          security default-keychain -s build.keychain
+          security import /tmp/cert.p12 -k build.keychain \
+            -P "$DEV_ID_CERT_PASSWORD" -T /usr/bin/codesign
+          security set-key-partition-list -S apple-tool:,apple:,codesign: \
+            -s -k "$KEYCHAIN_PASSWORD" build.keychain
+          rm -f /tmp/cert.p12
+          echo "developer_id_available=true" >> "$GITHUB_ENV"
+
+      - name: Sign macOS binaries
+        env:
+          DEV_ID_IDENTITY: ${{ secrets.DEV_ID_IDENTITY }}
+        run: |
+          set -e
+          if [ "${developer_id_available:-false}" = "true" ]; then
+            for arch in arm64 x64; do
+              codesign --sign "$DEV_ID_IDENTITY" --force \
+                --options runtime --timestamp \
+                --entitlements .github/entitlements.plist \
+                "bin/hanspell-macos-$arch"
+            done
+          else
+            codesign --sign - --force bin/hanspell-macos-arm64
+          fi
+
+      - name: Notarize macOS binaries
+        if: env.developer_id_available == 'true'
+        env:
+          APPLE_ID:           ${{ secrets.APPLE_ID }}
+          APPLE_TEAM_ID:      ${{ secrets.APPLE_TEAM_ID }}
+          APPLE_APP_PASSWORD: ${{ secrets.APPLE_APP_PASSWORD }}
+        run: |
+          set -e
+          for arch in arm64 x64; do
+            tmp=/tmp/notarize-$arch.zip
+            ditto -c -k --keepParent "bin/hanspell-macos-$arch" "$tmp"
+            xcrun notarytool submit "$tmp" \
+              --apple-id "$APPLE_ID" \
+              --team-id "$APPLE_TEAM_ID" \
+              --password "$APPLE_APP_PASSWORD" \
+              --wait
+            rm -f "$tmp"
+          done
 
       - name: Package zips
         working-directory: bin
@@ -57,7 +113,7 @@ jobs:
         run: |
           gh release create "${GITHUB_REF_NAME}" \
             --title "한스펠 ${GITHUB_REF_NAME}" \
-            --notes "윈도우, 맥, 리눅스에서 각각 실행되는 바이너리 파일입니다. [@yao-pkg/pkg](https://github.com/yao-pkg/pkg)로 만들었습니다." \
+            --notes "윈도우, 맥, 리눅스에서 각각 실행되는 바이너리 파일입니다. [@yao-pkg/pkg](https://github.com/yao-pkg/pkg)로 만들었습니다. macOS 바이너리는 Developer ID로 서명되고 Apple notarization을 통과했습니다." \
             "bin/hanspell-${V}-linux-x64.zip" \
             "bin/hanspell-${V}-macos-arm64.zip" \
             "bin/hanspell-${V}-macos-x64.zip" \
