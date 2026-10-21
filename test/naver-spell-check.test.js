@@ -1,56 +1,131 @@
 const assert = require('assert');
-const spellCheck = require('../lib/index').spellCheckByNAVER;
+const spellCheck = require('../lib/naver-spell-check');
 
-const never = () => {
-  assert.equal(true, false);
-};
+let originalFetch;
+
+function mockResponse(body) {
+  return { ok: true, status: 200, text: async () => body };
+}
 
 describe('spellCheckByNAVER', () => {
-  it('should fetch 0 data', (done) => {
-    const sentence = '';
-    const timeout = 10000;
-    const check = (data) => {
-      assert.equal(data.length, 0);
+  beforeEach(() => {
+    originalFetch = global.fetch;
+  });
+
+  afterEach(() => {
+    global.fetch = originalFetch;
+  });
+
+  it('completes empty input without making a request', (done) => {
+    let requests = 0;
+    global.fetch = async () => {
+      requests += 1;
+      throw new Error('unexpected network request');
     };
-    spellCheck(sentence, timeout, check, done, never);
-  }).timeout(15000);
 
-  it('should detect typos in a paragraph', (done) => {
-    const sentence = `여름 저녁이 푸르를 때 난 가리라
-보리 무성한 사이 가느다란 풀 짓밟힌 샛길 속으로.
-몽상가인 난, 발에 신선함을 느끼리라.
-난 내 벗은 머리를 바람이 스쳐지나가게 내버려두리라.
+    spellCheck(
+      '',
+      100,
+      (data) => assert.deepStrictEqual(data, []),
+      () => {
+        try {
+          assert.strictEqual(requests, 0);
+          done();
+        } catch (error) {
+          done(error);
+        }
+      },
+      done,
+    );
+  });
 
-난 말하지 않으련다, 아무것도 생각지 않으련다.
-그러나 한없는 사랑이 내 혼속에 살아오리니
-그럼 유랑민처럼 멀리 아주 멀리 가리라,
-여인과 같이 있는 것처럼 행복되게, 이리저리 자연을`;
-    const timeout = 10000;
-    const check = (data) => {
-      assert.ok(Array.isArray(data));
-      assert.ok(
-        data.length >= 1,
-        `expected at least 1 typo, got ${data.length}`,
-      );
-      data.forEach((typo) => {
-        assert.equal(typeof typo.token, 'string');
-        assert.ok(typo.token.length > 0);
-        assert.ok(Array.isArray(typo.suggestions));
-        assert.equal(typo.suggestions.length, 1);
-        assert.equal(typeof typo.suggestions[0], 'string');
+  it('applies the timeout while fetching the passport key', (done) => {
+    let requestSignal;
+    let reportedError;
+    global.fetch = (input, options = {}) => {
+      assert.ok(String(input).startsWith('https://search.naver.com/'));
+      requestSignal = options.signal;
+      return new Promise((resolve, reject) => {
+        if (!requestSignal) return;
+        requestSignal.addEventListener(
+          'abort',
+          () => {
+            const error = new Error('aborted by timeout');
+            error.name = 'AbortError';
+            reject(error);
+          },
+          { once: true },
+        );
       });
     };
-    spellCheck(sentence, timeout, check, done, never);
-  }).timeout(15000);
 
-  it('should detect a known typo', (done) => {
-    const sentence = '안뇽하세요.';
-    const timeout = 10000;
-    const check = (data) => {
-      assert.equal(data.length, 1);
-      assert.equal(data[0].token, '안뇽하세요.');
-      assert.equal(data[0].suggestions[0], '안녕하세요.');
+    spellCheck(
+      'synthetic input',
+      10,
+      () => done(new Error('unexpected successful response')),
+      () => {
+        try {
+          assert.ok(requestSignal);
+          assert.strictEqual(requestSignal.aborted, true);
+          assert.strictEqual(reportedError.name, 'AbortError');
+          done();
+        } catch (error) {
+          done(error);
+        }
+      },
+      (error) => {
+        reportedError = error;
+      },
+    );
+  }).timeout(1000);
+
+  it('parses a synthetic result using local fetch stubs', (done) => {
+    const requests = [];
+    global.fetch = async (input, options = {}) => {
+      const url = String(input);
+      requests.push(url);
+      assert.ok(options.signal, 'fetch should receive the operation timeout');
+
+      if (url.startsWith('https://search.naver.com/')) {
+        return mockResponse('passportKey=deadbeef');
+      }
+      if (url.startsWith('https://m.search.naver.com/')) {
+        assert.strictEqual(new URL(url).searchParams.get('q'), 'teh');
+        const result = {
+          message: {
+            result: {
+              errata_count: 1,
+              origin_html: "<span class='result_underline'>teh</span>",
+              html: "<em class='red_text'>the</em>",
+            },
+          },
+        };
+        return mockResponse(`jQuery(${JSON.stringify(result)})`);
+      }
+      throw new Error(`unexpected URL: ${url}`);
     };
-    spellCheck(sentence, timeout, check, done, never);
-  }).timeout(15000);
+
+    spellCheck(
+      'teh',
+      100,
+      (data) => {
+        assert.deepStrictEqual(data, [
+          {
+            token: 'teh',
+            suggestions: ['the'],
+            info: '맞춤법 오류입니다.',
+          },
+        ]);
+      },
+      () => {
+        try {
+          assert.strictEqual(requests.length, 2);
+          done();
+        } catch (error) {
+          done(error);
+        }
+      },
+      done,
+    );
+  });
 });
